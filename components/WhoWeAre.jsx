@@ -33,14 +33,14 @@ const teamMembers = [
 
 const WhoWeAre = () => {
   return (
-    <section className="py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
-      {/* Subtle Background Elements */}
+  <section className="min-h-screen flex justify-center bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+       {/* Subtle Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
         <div className="absolute top-1/4 -left-20 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
         <div className="absolute bottom-1/3 -right-20 w-72 h-72 bg-indigo-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse animation-delay-2000"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-7xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 
           className="text-center mb-16"
           initial={{ opacity: 0, y: 20 }}
@@ -54,7 +54,7 @@ const WhoWeAre = () => {
           >
             Meet Our Team
           </motion.h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto text-center translate-x-65">
             Passionate creators building AI-powered Internship solutions for everyone
           </p>
         </motion.div>

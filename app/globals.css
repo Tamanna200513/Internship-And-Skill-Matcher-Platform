@@ -63,6 +63,7 @@ body {
 
 .features {
   display: grid;
+  text-align: center;
   grid-template-columns: repeat(3, 1fr);
   gap: 28px;
   padding: 60px 20px;
