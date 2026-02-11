@@ -1,9 +1,8 @@
-const InternshipCards = () => {
-  return (
-    <div>
-      <h2>Internships</h2>
-    </div>
-  );
-};
+"use client";
+import React from "react";
 
-export default InternshipCards;
+export default function InternshipCards() {
+  
+       
+  
+}
