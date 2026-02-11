@@ -1,3 +1,7 @@
+
+
+
+
 // components/HeroSection.jsx
 'use client';
 
@@ -29,8 +33,7 @@ export default function HeroSection() {
   const router = useRouter();
 
   return (
-    <section className="relative overflow-hidden
-      bg-gradient-to-br from-[#eaf4ff] via-[#f2f8ff] to-white">
+    <section className="relative overflow-hidden bg-gradient-to-br from-[#eaf4ff] via-[#f2f8ff] to-white">
 
       {/* ================= MAIN CONTENT ================= */}
       <div className="min-h-screen flex flex-col lg:flex-row items-center">
@@ -57,29 +60,6 @@ export default function HeroSection() {
             >
               Smartly connect students with the right opportunities.
             </motion.p>
-
-            {/* Buttons */}
-            <motion.div
-              variants={itemVariants}
-              className="flex gap-5 flex-wrap"
-            >
-              <button
-                onClick={() => router.push('/assessment')}
-                className="px-12 py-4 bg-orange-500 hover:bg-orange-600
-                  text-white font-semibold rounded-md
-                  shadow-md transition"
-              >
-                Get Started
-              </button>
-
-              <button
-                className="px-12 py-4 bg-[#1f3c88] hover:bg-[#182f6b]
-                  text-white font-semibold rounded-md
-                  shadow-md transition"
-              >
-                Explore Internships
-              </button>
-            </motion.div>
           </motion.div>
         </div>
 
@@ -110,6 +90,5 @@ export default function HeroSection() {
     </section>
   );
 }
-
 
 

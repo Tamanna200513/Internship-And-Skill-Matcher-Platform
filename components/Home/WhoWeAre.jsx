@@ -7,29 +7,30 @@ import { FaLinkedin } from 'react-icons/fa';
 const teamMembers = [
   {
     name: "Deepanshi Sharma",
-    role: "AI Architect",
+    role: "AI & Recommendation Engineer",
     linkedin: "https://www.linkedin.com/in/deepanshi-sharma-81465b2a6",
-    bio: "Architect of our diagnostic engine, integrating Gemini API with precision healthcare logic."
+    bio: "Develops the core recommendation engine that matches students with internships using skills, interests, and AI-driven logic."
   },
   {
     name: "Himanshi",
-    role: "UI/UX Lead",
+    role: "Frontend & UI/UX Lead",
     linkedin: "https://www.linkedin.com/in/himanshi-70387231a",
-    bio: "Crafts intuitive user experiences with Next.js and modern UI/UX principles."
+    bio: "Designs clean and user-friendly interfaces using Next.js, ensuring a smooth experience for students and recruiters."
   },
   {
     name: "Tamanna Tiwari",
-    role: "Medical Validator",
+    role: "Data & Skill Validation Lead",
     linkedin: "https://www.linkedin.com/in/tamanna-tiwari-017a2129b/",
-    bio: "Ensures medical accuracy and validates AI-generated insights with real-world health data."
+    bio: "Validates skill data, internship requirements, and ensures accurate matching between student profiles and opportunities."
   },
   {
     name: "Aarchie Verma",
-    role: "Product Designer",
+    role: "Product & Experience Designer",
     linkedin: "https://www.linkedin.com/in/archie-verma-b25b82218",
-    bio: "Designs seamless workflows that make complex health diagnostics feel simple."
+    bio: "Designs intuitive user flows and layouts that make internship discovery and skill matching simple and engaging."
   }
 ];
+
 
 const WhoWeAre = () => {
   return (
@@ -49,17 +50,17 @@ const WhoWeAre = () => {
           transition={{ duration: 0.4 }}
         >
           <motion.h2 
-            className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-700 mb-4"
+            className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-700 mb-4 translate-y-5"
             whileHover={{ scale: 1.02 }}
           >
             Meet Our Team
           </motion.h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto text-center translate-x-65">
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto text-center translate-x-65 translate-y-7">
             Passionate creators building AI-powered Internship solutions for everyone
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 translate-y-12">
           {teamMembers.map((member, index) => (
             <motion.div
               key={index}
