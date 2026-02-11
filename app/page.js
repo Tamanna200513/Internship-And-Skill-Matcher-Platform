@@ -1,23 +1,20 @@
-import Header  from "@/components/Header";
-import HeroSection  from "@/components/HeroSection";
-import Feature from "@/components/Features";
-import HowItWorks from "@/components/HowItWorks";
-import WhoWeAre from "@/components/WhoWeAre";
-import InternshipCards from "@/components/InternshipCards";
-import Footer from "@/components/Footer";
+
+import HeroSection  from "@/components/Home/HeroSection";
+import Feature from "@/components/Home/Features";
+import HowItWorks from "@/components/Home/HowItWorks";
+import WhoWeAre from "@/components/Home/WhoWeAre";
+import InternshipCards from "@/components/Home/InternshipCards";
 
 
 
 export default function HomePage() {
   return (
     <main>
-      <Header />
       <HeroSection />
       <Feature />
       <HowItWorks />
-      <WhoWeAre />
       <InternshipCards />
-      <Footer />
+      <WhoWeAre />
 
     </main>
   );
