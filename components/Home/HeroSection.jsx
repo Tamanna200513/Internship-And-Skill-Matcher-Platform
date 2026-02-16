@@ -1,7 +1,3 @@
-
-
-
-
 // components/HeroSection.jsx
 'use client';
 
