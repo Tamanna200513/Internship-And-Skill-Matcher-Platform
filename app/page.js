@@ -5,8 +5,6 @@ import HowItWorks from "@/components/Home/HowItWorks";
 import WhoWeAre from "@/components/Home/WhoWeAre";
 import InternshipCards from "@/components/Home/InternshipCards";
 
-
-
 export default function HomePage() {
   return (
     <main>
@@ -15,7 +13,6 @@ export default function HomePage() {
       <HowItWorks />
       <InternshipCards />
       <WhoWeAre />
-
     </main>
   );
 }
