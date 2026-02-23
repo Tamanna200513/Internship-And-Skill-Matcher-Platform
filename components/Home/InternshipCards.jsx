@@ -1,3 +1,6 @@
+"use client";
+
+import React from "react";
 import { FaBuilding, FaMapMarkerAlt, FaRupeeSign, FaBriefcase } from "react-icons/fa";
 
 export default function InternshipCards() {
@@ -5,23 +8,23 @@ export default function InternshipCards() {
     {
       id: 1,
       title: "Frontend Developer Intern",
-      company: "TechNova",
+      company: "Amazon",
       location: "Remote",
-      stipend: "₹8,000 / month",
+      stipend: "₹30,000 / month",
     },
     {
       id: 2,
       title: "Backend Intern",
-      company: "CodeCraft",
+      company: "Samsung",
       location: "Delhi",
-      stipend: "₹10,000 / month",
+      stipend: "₹19,000 / month",
     },
     {
       id: 3,
       title: "AI / ML Intern",
-      company: "DataMind",
+      company: "Google",
       location: "Bangalore",
-      stipend: "₹12,000 / month",
+      stipend: "₹50,000 / month",
     },
   ];
 
