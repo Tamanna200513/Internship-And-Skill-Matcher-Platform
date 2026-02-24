@@ -2,14 +2,14 @@ import Image from "next/image";
 
 export default function HowItWorks() {
   return (
-    <div className="bg-gradient-to-b from-blue-50 to-white">
+    <div className="bg-gradient-to-b from-blue-50 to-white min-h-screen flex flex-col">
 
       {/* Hero Section */}
-      <section className="max-w-6xl mx-auto px-6 py-12 text-center translate-x-30 translate-y-5">
-        <h1 className="text-2xl md:text-3xl font-bold text-blue-900">
+      <section className="max-w-6xl mx-auto px-6 py-12 text-center translate-x-36 translate-y-8">
+        <h1 className="text-3xl md:text-5xl font-bold text-blue-900">
           How It Works
         </h1>
-        <p className="mt-3 text-lg text-gray-600">
+        <p className="mt-2 text-lg text-gray-600">
           Get Hired in{" "}
           <span className="text-blue-600 font-semibold">
             5 Easy Steps
@@ -18,27 +18,27 @@ export default function HowItWorks() {
       </section>
 
       {/* Steps Section */}
-      <section className="max-w-6xl mx-auto px-6 pb-12 translate-x-30 translate-y-">
+      <section className="max-w-7xl mx-auto px-8 py-14 mb-30 translate-x-35 translate-y-15">
         <div className="grid md:grid-cols-3 gap-6">
 
           {steps.map((step, index) => (
             <div
               key={index}
-              className="bg-white rounded-xl shadow p-4 hover:shadow-lg transition duration-300"
+              className="bg-white rounded-xl shadow p-6 hover:shadow-lg transition duration-300"
             >
-              <div className="inline-block bg-blue-600 text-white px-3 py-1 rounded-full text-xs mb-2">
+              <div className="inline-block bg-indigo-100 text-indigo-700 px-4 py-2 text-xl mb-3">
                 Step {index + 1}
               </div>
 
-              <h3 className="text-lg font-semibold text-gray-800 mb-1">
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">
                 {step.title}
               </h3>
 
-              <p className="text-gray-600 mb-3 text-sm">
+              <p className="text-gray-600 mb-4 text-sm leading-relaxed">
                 {step.desc}
               </p>
 
-              <div className="relative w-full h-32">
+              <div className="relative w-full h-40">
                 <Image
                   src={step.img}
                   alt={step.title}
