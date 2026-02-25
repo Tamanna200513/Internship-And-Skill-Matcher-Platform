@@ -7,7 +7,6 @@ export const metadata = {
   title: "Internship and Skill Matcher Platform",
   description: "Final Year Project",
 };
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
@@ -22,9 +21,3 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
-
-
-
-
-
-
