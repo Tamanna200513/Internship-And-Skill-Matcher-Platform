@@ -1,92 +1,166 @@
 "use client";
-import React from "react";
-
-export default function About() {
+export default function AboutPage() {
   return (
-    <section className="bg-gradient-to-b from-blue-50 to-white min-h-screen py-20 px-6">
-      <div className="max-w-6xl mx-auto">
+    <>
+      <section className="aboutSection">
+        <div className="container">
 
-        {/* Heading */}
-        <div className="text-center">
-          <h1 className="text-4xl md:text-5xl font-bold text-blue-800 mb-6">
-            About Us
-          </h1>
+          <h1 className="title">About Us</h1>
 
-          <p className="text-gray-600 text-lg max-w-3xl mx-auto mb-16">
-            We help students find the best internship opportunities based on their
-            skills and career interests.
-          </p>
-        </div>
-
-        {/* Main Content */}
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-
-          {/* Left Side Text */}
-          <div className="text-center md:text-left">
-            <h2 className="text-3xl font-semibold text-blue-700 mb-4">
-              Who We Are
-            </h2>
-            <p className="text-gray-600 leading-relaxed mb-8">
-              Internship & Skill Matcher is a smart platform designed to connect
-              students with the right internship opportunities. Our system
-              analyzes your skills and matches you with internships that align
-              with your career goals.
-            </p>
-
-            <h2 className="text-2xl font-semibold text-blue-700 mb-4">
-              Our Mission
-            </h2>
-            <p className="text-gray-600 leading-relaxed">
-              Our mission is to simplify the internship search process and help
-              students grow by finding opportunities that truly match their
-              skills and interests.
-            </p>
-          </div>
-
-          {/* Right Side Image */}
-          <div className="flex justify-center">
+          {/* Top Section */}
+          <div className="aboutTop">
             <img
-              src="https://img.freepik.com/free-vector/boy-with-smartphone-social-profile-commnication_24877-53919.jpg"
-              alt="About Illustration"
-             className="w-56 md:w-72 drop-shadow-xl"
+              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
+              alt="students working"
+              className="aboutImage"
             />
+
+            <p className="description">
+              Internship and Skill Matcher Platform is designed to bridge the gap
+              between students and companies. Our goal is to help students find
+              internships based on their skills and interests while helping
+              companies discover talented candidates efficiently.
+            </p>
           </div>
 
+          {/* Cards Section */}
+          <div className="cards">
+
+            <div className="card">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+                className="icon"
+              />
+              <h3>Our Mission</h3>
+              <p>
+                To simplify the internship search process by providing
+                skill-based matching and personalized recommendations.
+              </p>
+            </div>
+
+            <div className="card">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png"
+                className="icon"
+              />
+              <h3>Our Vision</h3>
+              <p>
+                To become a leading platform that connects students and
+                recruiters efficiently using smart technology.
+              </p>
+            </div>
+
+            <div className="card">
+              <img
+                src="https://cdn-icons-png.flaticon.com/512/4149/4149671.png"
+                className="icon"
+              />
+              <h3>What We Do</h3>
+              <p>
+                We analyze student skills, match them with company requirements,
+                and provide a seamless application experience.
+              </p>
+            </div>
+
+          </div>
         </div>
+      </section>
 
-        {/* Features Section */}
-        <div className="mt-24 grid md:grid-cols-3 gap-8">
+      <style jsx>{`
+        .aboutSection {
+          padding: 80px 20px;
+          background: linear-gradient(to right, #f9fafc, #eef3ff);
+        }
 
-          <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300 text-center">
-            <h3 className="text-xl font-semibold text-blue-700 mb-3">
-              🎯 Smart Matching
-            </h3>
-            <p className="text-gray-600">
-              We match internships based on your skills and interests.
-            </p>
-          </div>
+        .container {
+          max-width: 1100px;
+          margin: auto;
+          text-align: center;
+        }
 
-          <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300 text-center">
-            <h3 className="text-xl font-semibold text-blue-700 mb-3">
-              🚀 Career Growth
-            </h3>
-            <p className="text-gray-600">
-              Helping students grow with real-world experience.
-            </p>
-          </div>
+        .title {
+          font-size: 38px;
+          font-weight: bold;
+          margin-bottom: 40px;
+          color: #4452d3;
+        }
 
-          <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300 text-center">
-            <h3 className="text-xl font-semibold text-blue-700 mb-3">
-              🤝 Easy Process
-            </h3>
-            <p className="text-gray-600">
-              Simple, fast, and user-friendly platform.
-            </p>
-          </div>
+        .aboutTop {
+          display: flex;
+          align-items: center;
+          gap: 40px;
+          margin-bottom: 60px;
+          flex-wrap: wrap;
+          justify-content: center;
+        }
 
-        </div>
+        .aboutImage {
+          width: 420px;
+          border-radius: 12px;
+          box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
 
-      </div>
-    </section>
+        .description {
+          font-size: 18px;
+          color: #555;
+          max-width: 500px;
+          line-height: 1.7;
+          text-align: left;
+        }
+
+        .cards {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+          gap: 25px;
+        }
+
+        .card {
+          background: white;
+          padding: 30px;
+          border-radius: 12px;
+          box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+          transition: 0.3s ease;
+        }
+
+        .card:hover {
+          transform: translateY(-10px);
+          box-shadow: 0 12px 28px rgba(0,0,0,0.15);
+        }
+
+        .icon {
+          width: 60px;
+          margin-bottom: 15px;
+        }
+
+        .card h3 {
+          margin-bottom: 10px;
+          color: #0070f3;
+        }
+
+        .card p {
+          color: #666;
+          font-size: 15px;
+        }
+
+        @media (max-width: 768px) {
+
+          .aboutTop {
+            flex-direction: column;
+          }
+
+          .aboutImage {
+            width: 100%;
+          }
+
+          .description {
+            text-align: center;
+          }
+
+          .title {
+            font-size: 30px;
+          }
+        }
+      `}</style>
+    </>
   );
 }

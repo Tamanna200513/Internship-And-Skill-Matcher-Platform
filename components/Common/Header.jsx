@@ -16,10 +16,8 @@ export default function Header() {
     ? [
         { name: "Home", href: "/" },
         { name: "Dashboard", href: "/dashboard" },
-        { name: "Internships", href: "/internships" },
-        { name: "Resume", href: "/resume" },
+        { name: "Companies", href: "/Companies" },
         { name: "Skill Match", href: "/skill-matching" },
-        { name: "Placement Rounds", href: "/placement/rounds" },
         { name: "How It Works", href: "/how-it-works" },
         { name: "About Us", href: "/about" },
       ]
@@ -76,7 +74,7 @@ export default function Header() {
             {user ? (
               <button
                 onClick={handleLogout}
-                className="px-4 py-2 text-sm font-medium bg-red-600 text-white rounded-md hover:bg-red-700 transition translate-x-15"
+                className="px-4 py-2 text-sm font-medium bg-red-600 text-white hover:bg-red-700 transition translate-x-15"
               >
                 Logout
               </button>
@@ -84,14 +82,14 @@ export default function Header() {
               <>
                 <Link
                   href="/auth/login"
-                  className="px-4 py-2 text-sm font-medium border border-gray-300 rounded-md hover:bg-gray-100 transition translate-x-15"
+                  className="px-4 py-2 text-sm font-bold border border-gray-300 hover:bg-gray-100 transition translate-x-15"
                 >
                   Login
                 </Link>
 
                 <Link
                   href="/auth/register"
-                  className="px-4 py-2 text-sm font-medium bg-blue-600 text-white rounded-md hover:bg-blue-700 transition translate-x-15"
+                  className="px-4 py-2 text-sm font-bold bg-indigo-600 text-white hover:bg-blue-700 transition translate-x-15"
                 >
                   Sign Up
                 </Link>
