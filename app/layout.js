@@ -1,23 +1,36 @@
-import "./globals.css";
-import Header from "@/components/Common/Header";
-import Footer from "@/components/Common/Footer";
-import ClientProviders from "@/components/ClientProviders";
+import 'bootstrap/dist/css/bootstrap.min.css'
+import "./globals.css"
+
+import Header from "@/components/Common/Header"
+import Footer from "@/components/Common/Footer"
+import ClientProviders from "@/components/ClientProviders"
 
 export const metadata = {
-  title: "Internship and Skill Matcher Platform",
-  description: "Final Year Project",
-};
+  title: "Internship & Skill Matcher",
+  description: "Final Year Project Platform",
+}
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="flex flex-col min-h-screen">
-        {/* ✅ ClientProviders wraps everything */}
+      <body className="min-h-screen flex flex-col">
+
         <ClientProviders>
+
+          {/* Navbar */}
           <Header />
-          <main className="flex-grow">{children}</main>
+
+          {/* Page Content */}
+          <main className="flex-grow w-full">
+            {children}
+          </main>
+
+          {/* Footer */}
           <Footer />
+
         </ClientProviders>
+
       </body>
     </html>
-  );
+  )
 }

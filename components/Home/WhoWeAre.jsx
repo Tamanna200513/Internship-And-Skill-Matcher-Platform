@@ -1,124 +1,113 @@
-// components/WhoWeAre.jsx
 "use client";
-import React from 'react';
-import { motion } from 'framer-motion';
-import { FaLinkedin } from 'react-icons/fa';
+
+import React from "react";
+import { motion } from "framer-motion";
+import { FaLinkedin } from "react-icons/fa";
 
 const teamMembers = [
   {
     name: "Deepanshi Sharma",
     role: "AI & Recommendation Engineer",
     linkedin: "https://www.linkedin.com/in/deepanshi-sharma-81465b2a6",
-    bio: "Develops the core recommendation engine that matches students with internships using skills, interests, and AI-driven logic."
+    bio: "Develops the core recommendation engine that matches students with internships using skills and AI-driven logic."
   },
   {
     name: "Himanshi",
     role: "Frontend & UI/UX Lead",
     linkedin: "https://www.linkedin.com/in/himanshi-70387231a",
-    bio: "Designs clean and user-friendly interfaces using Next.js, ensuring a smooth experience for students and recruiters."
+    bio: "Designs clean and user-friendly interfaces using Next.js ensuring smooth experience."
   },
   {
     name: "Tamanna Tiwari",
     role: "Data & Skill Validation Lead",
     linkedin: "https://www.linkedin.com/in/tamanna-tiwari-017a2129b/",
-    bio: "Validates skill data, internship requirements, and ensures accurate matching between student profiles and opportunities."
+    bio: "Validates skill data and internship requirements ensuring accurate matching."
   },
   {
     name: "Aarchie Verma",
     role: "Product & Experience Designer",
     linkedin: "https://www.linkedin.com/in/archie-verma-b25b82218",
-    bio: "Designs intuitive user flows and layouts that make internship discovery and skill matching simple and engaging."
+    bio: "Designs intuitive user flows that make internship discovery simple."
   }
 ];
 
-
-const WhoWeAre = () => {
+export default function WhoWeAre() {
   return (
-  <section className="min-h-screen flex justify-center bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
-       {/* Subtle Background Elements */}
+    <section className="py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+
+      {/* Background blur circles */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-        <div className="absolute top-1/4 -left-20 w-72 h-72 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
-        <div className="absolute bottom-1/3 -right-20 w-72 h-72 bg-indigo-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse animation-delay-2000"></div>
+        <div className="absolute top-1/4 -left-20 w-72 h-72 bg-blue-100 rounded-full blur-3xl opacity-30"></div>
+        <div className="absolute bottom-1/3 -right-20 w-72 h-72 bg-indigo-100 rounded-full blur-3xl opacity-30"></div>
       </div>
 
-      <div className="max-w-7xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div 
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+
+        {/* Heading */}
+        <motion.div
           className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.4 }}
+          transition={{ duration: 0.5 }}
         >
-          <motion.h2 
-            className="text-4xl md:text-5xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-gray-700 mb-4 translate-y-5"
-            whileHover={{ scale: 1.02 }}
-          >
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Meet Our Team
-          </motion.h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto text-center translate-x-65 translate-y-7">
-            Passionate creators building AI-powered Internship solutions for everyone
+          </h2>
+
+          <p className="text-gray-600 max-w-2xl mx-auto">
+            Passionate creators building AI-powered internship solutions
+            to help students discover the right opportunities.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 translate-y-12">
+        {/* Team Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+
           {teamMembers.map((member, index) => (
+
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ 
-                duration: 0.4, 
-                delay: index * 0.1,
-                ease: "easeOut"
-              }}
-              whileHover={{ 
-                y: -12,
-                transition: {
-                  type: "spring",
-                  stiffness: 500,
-                  damping: 25
-                }
-              }}
-              className="group relative bg-white/80 backdrop-blur-sm rounded-2xl p-7 text-center border border-gray-200/50 shadow-lg hover:shadow-2xl transition-all duration-300"
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              whileHover={{ y: -10 }}
+              className="bg-white rounded-2xl p-7 text-center border border-gray-200 shadow-md hover:shadow-xl transition"
             >
+
               {/* Avatar */}
-              <div className="relative inline-block mb-6">
-                <div className="w-28 h-28 rounded-2xl bg-gradient-to-br from-gray-100 to-gray-200 flex items-center justify-center text-gray-800 text-xl font-bold mx-auto border-2 border-gray-300/30 group-hover:border-blue-400/50 transition-colors duration-300">
-                  {member.name.split(' ').map(n => n[0]).join('')}
-                </div>
-                {/* Hover Glow */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-400/20 to-indigo-400/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+              <div className="w-24 h-24 rounded-xl bg-gray-200 flex items-center justify-center text-lg font-bold mx-auto mb-5">
+                {member.name.split(" ").map(n => n[0]).join("")}
               </div>
-              
-              <h3 className="text-xl font-bold text-gray-900 mb-1">
+
+              <h3 className="text-lg font-bold text-gray-900">
                 {member.name}
               </h3>
-              <p className="text-blue-600 font-medium mb-3">
+
+              <p className="text-blue-600 text-sm font-medium mb-3">
                 {member.role}
               </p>
-              <p className="text-gray-600 text-sm mb-5 leading-relaxed">
+
+              <p className="text-gray-600 text-sm mb-5">
                 {member.bio}
               </p>
-              
-              {/* LinkedIn Button */}
-              <motion.a
+
+              <a
                 href={member.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center w-10 h-10 rounded-xl bg-gray-900 text-white group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-indigo-600 transition-all duration-300"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-                aria-label={`Connect with ${member.name} on LinkedIn`}
+                className="inline-flex items-center justify-center w-10 h-10 rounded-lg bg-gray-900 text-white hover:bg-blue-600 transition"
               >
-                <FaLinkedin className="text-base" />
-              </motion.a>
+                <FaLinkedin />
+              </a>
+
             </motion.div>
+
           ))}
+
         </div>
       </div>
     </section>
   );
-};
-
-export default WhoWeAre;
+}
