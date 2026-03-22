@@ -18,12 +18,10 @@ export default function Header() {
         { name: "Dashboard", href: "/dashboard" },
         { name: "Companies", href: "/companies" }, // small fix (lowercase)
         { name: "Skill Match", href: "/skill-matching" },
-        { name: "How It Works", href: "/how-it-works" },
         { name: "About Us", href: "/about" },
       ]
     : [
         { name: "Home", href: "/" },
-        { name: "How It Works", href: "/how-it-works" },
         { name: "About Us", href: "/about" },
       ];
 
@@ -40,9 +38,9 @@ export default function Header() {
           {/* LOGO */}
           <Link
             href="/"
-            className="flex items-center gap-2 text-lg font-semibold text-gray-800"
+            className="flex items-center gap-2 text-lg font-semibold text-gray-800n!no-underline"
           >
-            <div className="w-9 h-9 bg-blue-600 text-white flex items-center justify-center rounded-md">
+            <div className="w-9 h-9 bg-blue-600 text-white flex items-center justify-center rounded-md no-underline !no-underline">
               <BriefcaseIcon className="w-5 h-5" />
             </div>
             Internship & Skill Matcher
@@ -57,7 +55,7 @@ export default function Header() {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className={`text-sm font-medium transition ${
+                  className={`text-sm font-medium transition !no-underline ${
                     active
                       ? "text-blue-600"
                       : "text-gray-600 hover:text-blue-500"
@@ -74,7 +72,7 @@ export default function Header() {
             {user ? (
               <button
                 onClick={handleLogout}
-                className="px-4 py-2 text-sm font-medium bg-red-600 text-white hover:bg-red-700 transition rounded-md"
+                className="px-4 py-2 text-sm font-medium bg-red-600 text-white hover:bg-red-700 transition rounded-md !no-underline"
               >
                 Logout
               </button>
@@ -82,14 +80,14 @@ export default function Header() {
               <>
                 <Link
                   href="/auth/login"
-                  className="px-4 py-2 text-sm font-bold border border-gray-300 hover:bg-gray-100 transition rounded-md"
+                  className="px-4 py-2 text-sm font-bold border border-gray-300 hover:bg-gray-100 transition rounded-md !no-underline"
                 >
                   Login
                 </Link>
 
                 <Link
                   href="/auth/register"
-                  className="px-4 py-2 text-sm font-bold bg-indigo-600 text-white hover:bg-blue-700 transition rounded-md"
+                  className="px-4 py-2 text-sm font-bold bg-indigo-600 text-white hover:bg-blue-700 transition rounded-md !no-underline"
                 >
                   Sign Up
                 </Link>

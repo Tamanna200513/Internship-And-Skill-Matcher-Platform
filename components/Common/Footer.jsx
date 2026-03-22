@@ -61,12 +61,12 @@ export default function Footer() {
               Quick Links
             </h3>
 
-            <ul className="space-y-2 text-sm">
+            <ul className="space-y-2 text-sm text-gray-600">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-600 hover:text-blue-600 transition"
+                    className="text-gray-600 hover:text-gray-600 transition duration-200 !no-underline"
                   >
                     {link.name}
                   </Link>
