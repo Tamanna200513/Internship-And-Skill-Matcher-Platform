@@ -34,7 +34,7 @@ export default function InternshipCards() {
       <div className="max-w-6xl mx-auto px-4">
 
         <h2 className="text-3xl font-bold text-center text-blue-700 mb-10 translate-xl">
-          Latest Internships
+         Recommended Companies for You
         </h2>
 
         <div className="grid md:grid-cols-3 gap-6">
