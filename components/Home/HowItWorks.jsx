@@ -1,5 +1,4 @@
 "use client";
-
 export default function HowItWorks() {
   return (
     <>
@@ -68,7 +67,12 @@ export default function HowItWorks() {
         /* 🔥 GRID LAYOUT FIX */
         .how-cards {
           display: grid;
+<<<<<<< HEAD
           grid-template-columns: repeat(3, 1fr);
+=======
+          justify-content: center;
+          align-items: center;
+>>>>>>> 5c676aa0f222763297be69dc475d31cd576764ca
           gap: 30px;
         }
 

@@ -26,6 +26,7 @@ export default function RootLayout({ children }) {
           </main>
 
           {/* Footer */}
+          <div style={{ marginTop: "80px" }}></div> {/* 👈 gap */}
           <Footer />
 
         </ClientProviders>
