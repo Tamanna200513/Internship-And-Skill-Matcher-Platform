@@ -16,7 +16,7 @@ export default function Header() {
     ? [
         { name: "Home", href: "/" },
         { name: "Dashboard", href: "/dashboard" },
-        { name: "Companies", href: "/Companies" },
+        { name: "Companies", href: "/companies" }, // small fix (lowercase)
         { name: "Skill Match", href: "/skill-matching" },
         { name: "How It Works", href: "/how-it-works" },
         { name: "About Us", href: "/about" },
@@ -34,13 +34,13 @@ export default function Header() {
 
   return (
     <header className="w-full bg-white shadow-sm border-b">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between h-16">
 
           {/* LOGO */}
           <Link
             href="/"
-            className="flex items-center gap-2 text-lg font-semibold text-gray-800 translate-x-15"
+            className="flex items-center gap-2 text-lg font-semibold text-gray-800"
           >
             <div className="w-9 h-9 bg-blue-600 text-white flex items-center justify-center rounded-md">
               <BriefcaseIcon className="w-5 h-5" />
@@ -49,7 +49,7 @@ export default function Header() {
           </Link>
 
           {/* NAV LINKS */}
-          <nav className="hidden md:flex items-center gap-8">
+          <nav className="hidden md:flex items-center gap-6">
             {navItems.map((item) => {
               const active = pathname === item.href;
 
@@ -70,11 +70,11 @@ export default function Header() {
           </nav>
 
           {/* RIGHT SIDE BUTTONS */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-3 flex-shrink-0">
             {user ? (
               <button
                 onClick={handleLogout}
-                className="px-4 py-2 text-sm font-medium bg-red-600 text-white hover:bg-red-700 transition translate-x-15"
+                className="px-4 py-2 text-sm font-medium bg-red-600 text-white hover:bg-red-700 transition rounded-md"
               >
                 Logout
               </button>
@@ -82,14 +82,14 @@ export default function Header() {
               <>
                 <Link
                   href="/auth/login"
-                  className="px-4 py-2 text-sm font-bold border border-gray-300 hover:bg-gray-100 transition translate-x-15"
+                  className="px-4 py-2 text-sm font-bold border border-gray-300 hover:bg-gray-100 transition rounded-md"
                 >
                   Login
                 </Link>
 
                 <Link
                   href="/auth/register"
-                  className="px-4 py-2 text-sm font-bold bg-indigo-600 text-white hover:bg-blue-700 transition translate-x-15"
+                  className="px-4 py-2 text-sm font-bold bg-indigo-600 text-white hover:bg-blue-700 transition rounded-md"
                 >
                   Sign Up
                 </Link>
@@ -102,12 +102,3 @@ export default function Header() {
     </header>
   );
 }
-
-
-
-
-
-
-
-
-

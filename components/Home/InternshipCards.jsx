@@ -1,6 +1,4 @@
 "use client";
-
-import React from "react";
 import { FaBuilding, FaMapMarkerAlt, FaRupeeSign, FaBriefcase } from "react-icons/fa";
 
 export default function InternshipCards() {
@@ -8,53 +6,74 @@ export default function InternshipCards() {
     {
       id: 1,
       title: "Frontend Developer Intern",
-      company: "Amazon",
+      company: "TechNova",
       location: "Remote",
-      stipend: "₹30,000 / month",
+      stipend: "₹8,000 / month",
+      type: "Part Time"
     },
     {
       id: 2,
-      title: "Backend Intern",
-      company: "Samsung",
+      title: "Backend Developer Intern",
+      company: "CodeCraft",
       location: "Delhi",
-      stipend: "₹19,000 / month",
+      stipend: "₹10,000 / month",
+      type: "Full Time"
     },
     {
       id: 3,
-      title: "AI / ML Intern",
-      company: "Google",
+      title: "AI/ML Intern",
+      company: "FutureAI",
       location: "Bangalore",
-      stipend: "₹50,000 / month",
-    },
+      stipend: "₹12,000 / month",
+      type: "Remote"
+    }
   ];
 
   return (
-    <section className="internshipSection">
-      <h2 className="sectionTitle">
-        <FaBriefcase style={{ marginRight: 8 }} />
-        Latest Internships
-      </h2>
+    <section className="py-16 bg-gray-50">
+      <div className="max-w-6xl mx-auto px-4">
 
-      <div className="cardGrid">
-        {internships.map((item) => (
-          <div key={item.id} className="internshipCard">
-            <h3>{item.title}</h3>
+        <h2 className="text-3xl font-bold text-center text-blue-700 mb-10 translate-xl">
+          Latest Internships
+        </h2>
 
-            <p>
-              <FaBuilding /> <strong> Company:</strong> {item.company}
-            </p>
+        <div className="grid md:grid-cols-3 gap-6">
+          {internships.map((item) => (
+            <div
+              key={item.id}
+              className="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition duration-300"
+            >
+              <h3 className="text-xl font-semibold text-gray-800 mb-3">
+                {item.title}
+              </h3>
 
-            <p>
-              <FaMapMarkerAlt /> <strong> Location:</strong> {item.location}
-            </p>
+              <p className="flex items-center text-gray-600 mb-2">
+                <FaBuilding className="mr-2 text-blue-600" />
+                {item.company}
+              </p>
 
-            <p>
-              <FaRupeeSign /> <strong> Stipend:</strong> {item.stipend}
-            </p>
+              <p className="flex items-center text-gray-600 mb-2">
+                <FaMapMarkerAlt className="mr-2 text-red-500" />
+                {item.location}
+              </p>
 
-            <button className="applyBtn">Apply Now</button>
-          </div>
-        ))}
+              <p className="flex items-center text-gray-600 mb-2">
+                <FaRupeeSign className="mr-2 text-green-600" />
+                {item.stipend}
+              </p>
+
+              <p className="flex items-center text-gray-600 mb-4">
+                <FaBriefcase className="mr-2 text-purple-600" />
+                {item.type}
+              </p>
+
+              <button className="w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700">
+                Apply Now
+              </button>
+            </div>
+          ))}
+        </div>
+
       </div>
     </section>
   );
