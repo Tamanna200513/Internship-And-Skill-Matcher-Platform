@@ -1,5 +1,4 @@
 "use client";
-
 export default function HowItWorks() {
   return (
     <>
@@ -56,7 +55,7 @@ export default function HowItWorks() {
         }
 
         .how-cards {
-          display: flex;
+          display: grid;
           justify-content: center;
           align-items: center;
           gap: 30px;

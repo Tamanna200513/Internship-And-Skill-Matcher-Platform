@@ -11,8 +11,14 @@ export default function HomePage() {
       <HeroSection />
       <Feature />
       <HowItWorks />
+      <>
       <InternshipCards />
+
+      <div style={{ marginTop: "80px" }}></div> {/* 👈 gap */}
+
       <WhoWeAre />
+    </>
+
     </main>
   );
 }
