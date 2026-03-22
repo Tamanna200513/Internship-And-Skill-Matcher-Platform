@@ -33,7 +33,7 @@ const teamMembers = [
 
 export default function WhoWeAre() {
   return (
-    <section className="py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+    <section className="py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden mt-24 mb-50">
 
       {/* Background blur circles */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none">

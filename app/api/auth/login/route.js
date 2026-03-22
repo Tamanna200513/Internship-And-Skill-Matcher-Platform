@@ -1,14 +1,16 @@
-import { NextResponse } from "next/server";
-import dbConnect from "@/lib/dbConnect";
+import { dbConnect } from "@/lib/dbConnect";
 import User from "@/models/User";
 import bcrypt from "bcryptjs";
+import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
-    await dbConnect();
 
     const { email, password } = await req.json();
 
+    await dbConnect();
+
+    // check required fields
     if (!email || !password) {
       return NextResponse.json(
         { message: "All fields required" },
@@ -16,7 +18,9 @@ export async function POST(req) {
       );
     }
 
+    // find user
     const user = await User.findOne({ email });
+
     if (!user) {
       return NextResponse.json(
         { message: "Invalid email or password" },
@@ -24,7 +28,9 @@ export async function POST(req) {
       );
     }
 
+    // compare password
     const isMatch = await bcrypt.compare(password, user.password);
+
     if (!isMatch) {
       return NextResponse.json(
         { message: "Invalid email or password" },
@@ -32,6 +38,7 @@ export async function POST(req) {
       );
     }
 
+    // login success
     return NextResponse.json({
       message: "Login successful",
       user: {
@@ -41,13 +48,14 @@ export async function POST(req) {
         role: user.role,
       },
     });
+
   } catch (error) {
+
     console.error("LOGIN ERROR 👉", error);
+
     return NextResponse.json(
       { message: "Server error" },
       { status: 500 }
     );
   }
 }
-
-
