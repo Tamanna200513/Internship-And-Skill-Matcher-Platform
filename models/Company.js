@@ -7,7 +7,7 @@ const CompanySchema = new mongoose.Schema({
   },
 
   logo: {
-    type: String, // image URL
+    type: String,
   },
 
   description: {
@@ -19,23 +19,59 @@ const CompanySchema = new mongoose.Schema({
   },
 
   careersLink: {
-    type: String, // redirect to official site
+    type: String,
     required: true,
   },
 
   skillsRequired: [
     {
-      type: String, // e.g. "React", "Node.js"
+      type: String,
     },
   ],
 
   category: {
-    type: String, // e.g. "Frontend", "Backend", "Full Stack"
+    type: String,
   },
+
+  companyType: {
+    type: String,
+  },
+
+  eligibility: {
+    qualification: {
+      type: String,
+    },
+    batch: {
+      type: String,
+    },
+    marksCriteria: {
+      type: String,
+    },
+    backlogCriteria: {
+      type: String,
+    },
+  },
+
+  rolesOffered: [
+    {
+      type: String,
+    },
+  ],
+
+  benefits: [
+    {
+      type: String,
+    },
+  ],
 
   rounds: [
     {
-      type: String, // short description of hiring rounds
+      title: {
+        type: String,
+      },
+      description: {
+        type: String,
+      },
     },
   ],
 
