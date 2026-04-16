@@ -4,63 +4,100 @@ const CompanySchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
+    trim: true,
   },
 
   logo: {
     type: String,
+    default: "",
   },
 
   description: {
     type: String,
+    default: "",
   },
 
   location: {
     type: String,
+    default: "",
   },
 
   careersLink: {
     type: String,
     required: true,
+    trim: true,
   },
 
   skillsRequired: [
     {
       type: String,
+      trim: true,
     },
   ],
 
   category: {
     type: String,
+    default: "",
+    trim: true,
   },
 
   companyType: {
     type: String,
+    default: "",
+    trim: true,
   },
 
   eligibility: {
-    qualification: {
-      type: String,
-    },
-    batch: {
-      type: String,
-    },
+    qualification: [
+      {
+        type: String,
+        trim: true,
+      },
+    ],
+
+    batch: [
+      {
+        type: String,
+        trim: true,
+      },
+    ],
+
     marksCriteria: {
-      type: String,
+      tenth: {
+        type: String,
+        default: "",
+      },
+      twelfth: {
+        type: String,
+        default: "",
+      },
+      graduation: {
+        type: String,
+        default: "",
+      },
+      cgpaEquivalent: {
+        type: String,
+        default: "",
+      },
     },
+
     backlogCriteria: {
       type: String,
+      default: "",
     },
   },
 
   rolesOffered: [
     {
       type: String,
+      trim: true,
     },
   ],
 
   benefits: [
     {
       type: String,
+      trim: true,
     },
   ],
 
@@ -68,9 +105,11 @@ const CompanySchema = new mongoose.Schema({
     {
       title: {
         type: String,
+        trim: true,
       },
       description: {
         type: String,
+        trim: true,
       },
     },
   ],

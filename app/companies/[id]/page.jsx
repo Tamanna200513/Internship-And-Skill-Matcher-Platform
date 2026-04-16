@@ -58,7 +58,7 @@ export default function CompanyDetailsPage() {
     <div className="min-h-screen bg-gradient-to-br from-slate-100 via-white to-slate-200 px-4 md:px-10 py-10">
 
       {/* HERO */}
-      <div className="max-w-7xl mx-auto bg-white rounded-3xl shadow-lg border border-slate-200 p-8 md:p-10">
+      <div className="max-w-7xl mx-auto bg-white rounded-3xl shadow-lg border border-slate-200 p-8 md:p-10 mt-5">
         <div className="flex flex-col md:flex-row gap-8 items-center">
 
           {/* Logo */}
