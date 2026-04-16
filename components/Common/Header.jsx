@@ -16,7 +16,7 @@ export default function Header() {
     ? [
         { name: "Home", href: "/" },
         { name: "Dashboard", href: "/dashboard" },
-        { name: "Companies", href: "/companies" }, // small fix (lowercase)
+        { name: "Companies", href: "/companies" }, 
         { name: "Skill Match", href: "/skill-matching" },
         { name: "About Us", href: "/about" },
       ]

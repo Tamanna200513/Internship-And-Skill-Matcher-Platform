@@ -25,20 +25,21 @@ export default function LoginForm() {
 
       const data = await res.json();
 
-      if (!res.ok) {
-        setError(data.message || "Invalid email or password");
-        return;
-      }
+            if (res.ok) {
+        localStorage.setItem("token", data.token);
 
-      localStorage.setItem("token", data.token);
-      router.push("/dashboard");
+        console.log("Login success");
+
+        router.push("/dashboard");
+      } else {
+        setError(data.message || "Login failed");
+      }
     } catch (err) {
       setError("Server error. Please try again.");
     } finally {
       setLoading(false);
     }
   };
-
   return (
     <div className="relative min-h-screen overflow-hidden flex items-center justify-center">
       {/* 🎬 Video Background (Reel Style) */}
