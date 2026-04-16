@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Link from "next/link";
@@ -101,7 +100,7 @@ export default function CompanyDetailsPage() {
               <a
                 href={company.careersLink}
                 target="_blank"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-xl text-center font-semibold"
+                className="bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded-xl text-center font-semibold"
               >
                 🚀 Apply Now
               </a>
@@ -119,10 +118,9 @@ export default function CompanyDetailsPage() {
 
       {/* MAIN GRID */}
       <div className="max-w-7xl mx-auto mt-10 grid lg:grid-cols-3 gap-8">
-
         {/* LEFT */}
         <div className="lg:col-span-2 space-y-8">
-
+<div style={{ marginTop: "80px" }}></div> {/* 👈 gap */}
           {/* Eligibility */}
           <div className="bg-white rounded-3xl shadow-md p-8 border">
             <h2 className="text-2xl font-bold mb-6">🎯 Eligibility Criteria</h2>
@@ -143,7 +141,7 @@ export default function CompanyDetailsPage() {
               ))}
             </div>
           </div>
-
+<div style={{ marginTop: "80px" }}></div> {/* 👈 gap */}
           {/* Roles */}
           <div className="bg-white rounded-3xl shadow-md p-8 border">
             <h2 className="text-2xl font-bold mb-6">💼 Roles Offered</h2>
@@ -156,7 +154,7 @@ export default function CompanyDetailsPage() {
               ))}
             </div>
           </div>
-
+<div style={{ marginTop: "80px" }}></div> {/* 👈 gap */}
           {/* Selection Process */}
           <div className="bg-white rounded-3xl shadow-md p-8 border">
             <h2 className="text-2xl font-bold mb-8">🚀 Selection Process</h2>
@@ -182,7 +180,7 @@ export default function CompanyDetailsPage() {
               ))}
             </div>
           </div>
-
+<div style={{ marginTop: "80px" }}></div> {/* 👈 gap */}
           {/* Benefits */}
           <div className="bg-white rounded-3xl shadow-md p-8 border">
             <h2 className="text-2xl font-bold mb-6">🌟 Benefits</h2>

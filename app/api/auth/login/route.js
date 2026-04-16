@@ -1,6 +1,7 @@
 import { dbConnect } from "@/lib/dbConnect";
 import User from "@/models/User";
 import bcrypt from "bcryptjs";
+import { data } from "framer-motion/client";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
@@ -37,7 +38,8 @@ export async function POST(req) {
         { status: 401 }
       );
     }
-
+const data = await res.json();
+console.log("LOGIN DATA:", data);  // 👈 ADD THIS
     // login success
     return NextResponse.json({
       message: "Login successful",
@@ -52,7 +54,7 @@ export async function POST(req) {
   } catch (error) {
 
     console.error("LOGIN ERROR 👉", error);
-
+    localStorage.setItem("token",data.token);
     return NextResponse.json(
       { message: "Server error" },
       { status: 500 }

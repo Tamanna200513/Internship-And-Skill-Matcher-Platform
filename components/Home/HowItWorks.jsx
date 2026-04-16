@@ -3,6 +3,10 @@ export default function HowItWorks() {
   return (
     <>
       <section className="how-section pb-24">
+
+        {/* 🔥 Background Image */}
+        <div className="bg-image"></div>
+
         <div className="container">
           
           <h2 className="how-title">How It Works</h2>
@@ -46,12 +50,35 @@ export default function HowItWorks() {
 
       <style jsx>{`
         .how-section {
+          position: relative;
           padding: 80px 20px;
           margin-bottom: 120px;
-          background: linear-gradient(to bottom, #f4f9ff, #ffffff);
+          overflow: hidden;
+        }
+
+        /* 🔥 Background Image with Blur */
+        .bg-image {
+          position: absolute;
+          inset: 0;
+          background-image: url("/images/office.jpg"); /* 👈 image public folder me */
+          background-size: cover;
+          background-position: center;
+          transform: scale(1.1);
+          z-index: 0;
+        }
+
+        /* 🔥 Dark overlay */
+        .how-section::before {
+          content: "";
+          position: absolute;
+          inset: 0;
+          background: rgba(0, 0, 0, 0.5);
+          z-index: 1;
         }
 
         .container {
+          position: relative;
+          z-index: 2;
           max-width: 1100px;
           margin: 0 auto;
           text-align: center;
@@ -60,28 +87,25 @@ export default function HowItWorks() {
         .how-title {
           font-size: 32px;
           font-weight: 700;
-          color: #1e3a8a;
+          color: #ffffff;
           margin-bottom: 40px;
         }
 
-        /* 🔥 GRID LAYOUT FIX */
         .how-cards {
           display: grid;
-<<<<<<< HEAD
           grid-template-columns: repeat(3, 1fr);
-=======
-          justify-content: center;
-          align-items: center;
->>>>>>> 5c676aa0f222763297be69dc475d31cd576764ca
           gap: 30px;
         }
 
+        /* 🔥 Glass effect cards */
         .how-card {
-          background: white;
+          background: rgba(255, 255, 255, 0.1);
+          backdrop-filter: blur(10px);
           padding: 25px;
           border-radius: 16px;
-          box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+          box-shadow: 0 10px 25px rgba(0,0,0,0.2);
           transition: 0.3s;
+          color: white;
         }
 
         .how-card:hover {
@@ -97,16 +121,15 @@ export default function HowItWorks() {
 
         .how-card h3 {
           font-size: 18px;
-          color: #1e40af;
+          color: #fff;
           margin-bottom: 8px;
         }
 
         .how-card p {
-          color: #555;
+          color: #ddd;
           font-size: 14px;
         }
 
-        /* 📱 RESPONSIVE */
         @media (max-width: 1024px) {
           .how-cards {
             grid-template-columns: repeat(2, 1fr);
