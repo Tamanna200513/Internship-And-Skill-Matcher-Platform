@@ -1,135 +1,120 @@
 "use client";
 
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
-import Link from "next/link";
 
-export default function RegisterPage() {
-
+export default function SignupForm() {
   const router = useRouter();
-
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: ""
-  });
-
-  const [message, setMessage] = useState("");
-
-  const handleChange = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value
-    });
-  };
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   const handleSignup = async (e) => {
     e.preventDefault();
-
-    if (form.password !== form.confirmPassword) {
-      setMessage("Passwords do not match");
-      return;
-    }
+    setLoading(true);
+    setError("");
 
     try {
-
       const res = await fetch("/api/auth/register", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          name: form.name,
-          email: form.email,
-          password: form.password
-        })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password }),
       });
 
       const data = await res.json();
 
       if (!res.ok) {
-        setMessage(data.message);
+        setError(data.message || "Signup failed");
         return;
       }
 
-      alert("Signup successful");
-
       router.push("/auth/login");
-
-    } catch (error) {
-      setMessage("Something went wrong");
+    } catch (err) {
+      setError("Server error. Try again.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="auth-container">
-      <div className="auth-box">
+    <div className="relative min-h-screen overflow-hidden flex items-center justify-center">
+      {/* Video Background */}
+      <video autoPlay loop muted className="absolute w-full h-full object-cover">
+        <source src="https://www.w3schools.com/howto/rain.mp4" type="video/mp4" />
+      </video>
 
-        <h2>Sign Up</h2>
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
 
-        <p className="auth-subtitle">
-          Access your internship opportunities
-        </p>
+      {/* Glow Effects */}
+      <div className="absolute w-[300px] h-[300px] bg-purple-500/30 rounded-full blur-3xl top-10 left-10 animate-pulse" />
+      <div className="absolute w-[300px] h-[300px] bg-pink-500/30 rounded-full blur-3xl bottom-10 right-10 animate-pulse" />
 
-        <form className="auth-form" onSubmit={handleSignup}>
+      {/* Signup Card */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6 }}
+        className="relative z-10 bg-white/10 backdrop-blur-xl p-8 rounded-2xl shadow-2xl w-[360px] border border-white/20"
+      >
+        <h2 className="text-3xl font-bold text-center mb-6 text-white">
+          Create Account ✨
+        </h2>
 
+        <form onSubmit={handleSignup} className="space-y-4">
           <input
             type="text"
-            name="name"
             placeholder="Full Name"
-            value={form.name}
-            onChange={handleChange}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full p-3 rounded-lg bg-white/20 text-white placeholder-gray-300 outline-none focus:ring-2 focus:ring-purple-400"
             required
           />
 
           <input
             type="email"
-            name="email"
             placeholder="Email"
-            value={form.email}
-            onChange={handleChange}
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full p-3 rounded-lg bg-white/20 text-white placeholder-gray-300 outline-none focus:ring-2 focus:ring-purple-400"
             required
           />
 
           <input
             type="password"
-            name="password"
-            placeholder="Create Password"
-            value={form.password}
-            onChange={handleChange}
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full p-3 rounded-lg bg-white/20 text-white placeholder-gray-300 outline-none focus:ring-2 focus:ring-purple-400"
             required
           />
 
-          <input
-            type="password"
-            name="confirmPassword"
-            placeholder="Confirm Password"
-            value={form.confirmPassword}
-            onChange={handleChange}
-            required
-          />
+          {error && <p className="text-red-400 text-sm text-center">{error}</p>}
 
-          <button className="primary-btn" type="submit">
-            Sign Up
-          </button>
-
+          <motion.button
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.95 }}
+            type="submit"
+            disabled={loading}
+            className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white p-3 rounded-lg font-semibold shadow-lg"
+          >
+            {loading ? "Creating Account..." : "Signup"}
+          </motion.button>
         </form>
 
-        {message && (
-          <p style={{ color: "red", marginTop: "10px" }}>
-            {message}
-          </p>
-        )}
-
-        <p className="switch-text">
-          Already have an account?{" "}
-          <Link href="/auth/login">
+        <p className="text-sm text-center mt-4 text-gray-200">
+          Already have an account?{' '}
+          <span
+            onClick={() => router.push("/auth/login")}
+            className="text-pink-400 cursor-pointer font-semibold"
+          >
             Login
-          </Link>
+          </span>
         </p>
-
-      </div>
+      </motion.div>
     </div>
   );
 }
