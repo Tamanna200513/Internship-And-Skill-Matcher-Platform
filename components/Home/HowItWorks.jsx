@@ -1,11 +1,9 @@
 "use client";
+
 export default function HowItWorks() {
   return (
     <>
       <section className="how-section pb-24">
-
-        {/* 🔥 Background Image */}
-        <div className="bg-image"></div>
 
         <div className="container">
           
@@ -50,35 +48,11 @@ export default function HowItWorks() {
 
       <style jsx>{`
         .how-section {
-          position: relative;
           padding: 80px 20px;
           margin-bottom: 120px;
-          overflow: hidden;
-        }
-
-        /* 🔥 Background Image with Blur */
-        .bg-image {
-          position: absolute;
-          inset: 0;
-          background-image: url("/images/office.jpg"); /* 👈 image public folder me */
-          background-size: cover;
-          background-position: center;
-          transform: scale(1.1);
-          z-index: 0;
-        }
-
-        /* 🔥 Dark overlay */
-        .how-section::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          background: rgba(0, 0, 0, 0.5);
-          z-index: 1;
         }
 
         .container {
-          position: relative;
-          z-index: 2;
           max-width: 1100px;
           margin: 0 auto;
           text-align: center;
@@ -97,7 +71,6 @@ export default function HowItWorks() {
           gap: 30px;
         }
 
-        /* 🔥 Glass effect cards */
         .how-card {
           background: rgba(255, 255, 255, 0.1);
           backdrop-filter: blur(10px);
@@ -141,7 +114,6 @@ export default function HowItWorks() {
             grid-template-columns: 1fr;
           }
         }
-
       `}</style>
     </>
   );

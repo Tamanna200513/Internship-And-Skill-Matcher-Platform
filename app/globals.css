@@ -23,6 +23,17 @@ html,body{
   padding:60px 20px;
 }
 
+body {
+  background-image: 
+    /* linear-gradient(rgba(10,10,20,0.85), rgba(10,10,20,0.9)), */
+    url("/images/office.jpg");
+    
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
 /* ================= HERO ================= */
 
 .hero{
