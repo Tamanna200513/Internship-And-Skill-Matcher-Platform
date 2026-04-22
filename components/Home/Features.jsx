@@ -18,43 +18,44 @@ export default function Features() {
   ];
 
   return (
-    <section className="bg-slate-50 flex justify-center">
-      <div className="max-w-6xl w-full px-6">
-        {/* center grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 justify-items-center">
-          {features.map((item, i) => (
-            <div
-              key={i}
-              className="
-                w-full max-w-sm
-                bg-white
-                rounded-2xl
-                p-8
-                text-center
-                shadow-md
-                hover:shadow-xl
-                transition
-                duration-300
-                hover:-translate-y-2
-              "
-            >
-              <div className="text-4xl mb-4 flex justify-center">
-                {item.icon}
-              </div>
+  <section className="flex justify-center">
+    <div className="max-w-6xl w-full px-6">
 
-              <h3 className="text-lg font-semibold text-slate-800 mb-2">
-                {item.title}
-              </h3>
-
-              <p className="text-sm text-slate-500 leading-relaxed">
-                {item.desc}
-              </p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 justify-items-center">
+        {features.map((item, i) => (
+          <div
+            key={i}
+            className="
+              w-full max-w-sm
+              rounded-2xl
+              backdrop-blur-md
+              shadow-lg
+              p-8
+              text-center
+              text-white
+              transition duration-300
+              hover:-translate-y-2
+              hover:shadow-2xl
+            "
+          >
+            <div className="text-4xl mb-4 flex justify-center">
+              {item.icon}
             </div>
-          ))}
-        </div>
+
+            <h3 className="text-lg font-semibold mb-2">
+              {item.title}
+            </h3>
+
+            <p className="text-sm text-gray-200 leading-relaxed">
+              {item.desc}
+            </p>
+          </div>
+        ))}
       </div>
-    </section>
-  );
+
+    </div>
+  </section>
+);
 }
 
 

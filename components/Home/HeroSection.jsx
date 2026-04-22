@@ -29,7 +29,7 @@ export default function HeroSection() {
   const router = useRouter();
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-[#eaf4ff] via-[#f2f8ff] to-white">
+    <section className="relative overflow-hidden bg-transparent">
 
       {/* ================= MAIN CONTENT ================= */}
       <div className="min-h-screen flex flex-col lg:flex-row items-center">
@@ -44,7 +44,7 @@ export default function HeroSection() {
           >
             <motion.h1
               variants={itemVariants}
-              className="text-4xl lg:text-5xl font-bold text-[#1f3c88] leading-snug mb-6"
+              className="text-4xl lg:text-5xl font-bold text-[#1f3c88] leading-snug mb-6 text-white"
             >
               Find the Best Internship <br />
               Matches for Your Skills!
@@ -52,7 +52,7 @@ export default function HeroSection() {
 
             <motion.p
               variants={itemVariants}
-              className="text-lg text-gray-600 mb-8 max-w-lg"
+              className="text-lg text-gray-600 mb-8 max-w-lg text-white"
             >
               Smartly connect students with the right opportunities.
             </motion.p>
@@ -71,7 +71,7 @@ export default function HeroSection() {
       </div>
 
       {/* ================= BOTTOM CURVE ================= */}
-      <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
+      {/* <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-none">
         <svg
           className="relative block w-full h-[120px]"
           viewBox="0 0 1440 120"
@@ -79,10 +79,9 @@ export default function HeroSection() {
         >
           <path
             d="M0,40 C240,100 480,0 720,20 960,40 1200,80 1440,40 L1440,120 L0,120 Z"
-            fill="#ffffff"
           />
         </svg>
-      </div>
+      </div> */}
     </section>
   );
 }

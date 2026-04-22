@@ -31,16 +31,16 @@ export default function Header() {
   };
 
   return (
-    <header className="w-full bg-white shadow-sm border-b">
+    <header className="w-full shadow-sm border-b">
       <div className="max-w-7xl mx-auto px-4 md:px-6">
         <div className="flex items-center justify-between h-16">
 
           {/* LOGO */}
           <Link
             href="/"
-            className="flex items-center gap-2 text-lg font-semibold text-gray-800n!no-underline"
+            className="flex items-center gap-2 text-lg font-semibold text-gray-800n!no-underline text-white"
           >
-            <div className="w-9 h-9 bg-blue-600 text-white flex items-center justify-center rounded-md no-underline !no-underline">
+            <div className="w-9 h-9 bg-blue-600 text-white flex items-center justify-center rounded-md no-underline !no-underline ">
               <BriefcaseIcon className="w-5 h-5" />
             </div>
             Internship & Skill Matcher
@@ -57,8 +57,8 @@ export default function Header() {
                   href={item.href}
                   className={`text-sm font-medium transition !no-underline ${
                     active
-                      ? "text-blue-600"
-                      : "text-gray-600 hover:text-blue-500"
+                      ? "text-white font-bold"
+                      : "text-white hover:text-blue-500"
                   }`}
                 >
                   {item.name}
@@ -80,14 +80,14 @@ export default function Header() {
               <>
                 <Link
                   href="/auth/login"
-                  className="px-4 py-2 text-sm font-bold border border-gray-300 hover:bg-gray-100 transition rounded-md !no-underline"
+                  className="px-4 py-2 text-white font-bold border border-gray-300 transition rounded-md !no-underline"
                 >
                   Login
                 </Link>
 
                 <Link
                   href="/auth/register"
-                  className="px-4 py-2 text-sm font-bold bg-indigo-600 text-white hover:bg-blue-700 transition rounded-md !no-underline"
+                  className="px-4 py-2 text-white font-bold border border-gray-600 text-white transition rounded-md !no-underline"
                 >
                   Sign Up
                 </Link>

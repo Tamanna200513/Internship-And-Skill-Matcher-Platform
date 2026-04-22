@@ -25,7 +25,6 @@ export default function Footer() {
 
   const quickLinks = [
     { name: "Home", href: "/" },
-    { name: "How it Works", href: "/how-it-works" },
     { name: "About Us", href: "/about" },
   ];
 
@@ -38,7 +37,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-blue-50 border-t border-gray-200 pt-20 pb-15">
+    <footer className="border-gray-200 pt-20 pb-15">
       <div className="max-w-7xl mx-auto px-6 py-12">
 
         {/* Grid */}
@@ -46,10 +45,10 @@ export default function Footer() {
 
           {/* Brand */}
           <div>
-            <h2 className="text-xl font-bold text-gray-900 mb-3">
+            <h2 className="text-xl font-bold text-gray-900 mb-3 text-white">
               Internship & Skill Matcher
             </h2>
-            <p className="text-gray-600 text-sm leading-relaxed">
+            <p className="text-gray-600 text-sm leading-relaxed mb-5 text-white">
               Helping students discover the right internship opportunities
               based on their skills and career interests.
             </p>
@@ -57,16 +56,16 @@ export default function Footer() {
 
           {/* Links */}
           <div>
-            <h3 className="font-semibold text-gray-900 mb-4">
+            <h3 className="font-semibold text-gray-900 mb-4 text-white">
               Quick Links
             </h3>
 
-            <ul className="space-y-2 text-sm text-gray-600">
+            <ul className="space-y-2 text-sm text-gray-600 text-white">
               {quickLinks.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-gray-600 hover:text-gray-600 transition duration-200 !no-underline"
+                    className="text-gray-600 hover:text-gray-600 transition duration-200 !no-underline text-white"
                   >
                     {link.name}
                   </Link>
@@ -77,19 +76,19 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-semibold text-gray-900 mb-4">
+            <h3 className="font-semibold text-gray-900 mb-4 text-white">
               Contact
             </h3>
 
-            <p className="text-sm text-gray-600 mb-1">
+            <p className="text-sm text-gray-600 mb-1 text-white">
               📍 New Delhi, India
             </p>
 
-            <p className="text-sm text-gray-600 mb-1">
+            <p className="text-sm text-gray-600 mb-1 text-white">
               ✉ support@internshipandskillmatcher.com
             </p>
 
-            <p className="text-sm text-gray-600 mb-4">
+            <p className="text-sm text-gray-600 mb-4 text-white">
               📞 +91 98765 43210
             </p>
 
@@ -116,7 +115,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="border-t mt-10 pt-5 text-center text-sm text-gray-500">
+        <div className="mt-10 pt-5 text-center text-sm text-gray-500 text-white">
           © {new Date().getFullYear()} Internship & Skill Matcher
         </div>
 

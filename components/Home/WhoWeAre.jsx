@@ -33,7 +33,7 @@ const teamMembers = [
 
 export default function WhoWeAre() {
   return (
-    <section className="py-24 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden mt-24 mb-50">
+    <section className="py-24 bg-transparent from-gray-50 relative overflow-hidden mt-24 mb-50">
 
       {/* Background blur circles */}
       <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
@@ -51,11 +51,11 @@ export default function WhoWeAre() {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4 text-white">
             Meet Our Team
           </h2>
 
-          <p className="text-gray-600 max-w-2xl mx-auto">
+          <p className="text-gray-600 max-w-2xl mx-auto text-white">
             Passionate creators building AI-powered internship solutions
             to help students discover the right opportunities.
           </p>
@@ -73,7 +73,7 @@ export default function WhoWeAre() {
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
               whileHover={{ y: -10 }}
-              className="bg-white rounded-2xl p-7 text-center border border-gray-200 shadow-md hover:shadow-xl transition"
+              className="  rounded-2xl p-7 text-center border border-white/20 bg-white/10 backdrop-blur-md shadow-lg text-white transition duration-300 hover:shadow-2xl hover:-translate-y-2"
             >
 
               {/* Avatar */}
@@ -81,15 +81,15 @@ export default function WhoWeAre() {
                 {member.name.split(" ").map(n => n[0]).join("")}
               </div>
 
-              <h3 className="text-lg font-bold text-gray-900">
+              <h3 className="text-lg font-bold text-gray-900 text-white">
                 {member.name}
               </h3>
 
-              <p className="text-blue-600 text-sm font-medium mb-3">
+              <p className="text-blue-600 text-sm font-medium mb-3 text-white">
                 {member.role}
               </p>
 
-              <p className="text-gray-600 text-sm mb-5">
+              <p className="text-gray-600 text-sm mb-5 text-white">
                 {member.bio}
               </p>
 

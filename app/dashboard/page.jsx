@@ -65,22 +65,17 @@ export default function Dashboard() {
 
   return (
     <div
-      className="flex min-h-screen text-white bg-cover bg-center">
+      className="flex min-h-screen text-white bg-cover bg-center text-center">
 
 
       {/* 🔹 Main */}
-      <div className="flex-1 p-6">
+      <div className="flex-1 p-6 text-center max-w-5xl mx-auto">
 
         {/* 🔝 Top */}
         <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold ">
+          <h1 className="text-2xl font-bold text-center">
             Welcome back {/* You can replace this with dynamic user data */}Student!
           </h1>
-
-          <input
-            placeholder="Search..."
-            className="bg-white/10 px-4 py-2 rounded-lg outline-none backdrop-blur-md"
-          />
         </div>
 
         {/* 📄 Upload */}
