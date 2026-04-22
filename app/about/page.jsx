@@ -5,7 +5,7 @@ export default function AboutPage() {
       <section className="aboutSection">
         <div className="container">
 
-          <h1 className="title">About Us</h1>
+          <h1 className="title text-white">About Us</h1>
 
           {/* Top Section */}
           <div className="aboutTop">
@@ -15,7 +15,7 @@ export default function AboutPage() {
               className="aboutImage"
             />
 
-            <p className="description">
+            <p className="description text-white">
               Internship and Skill Matcher Platform is designed to bridge the gap
               between students and companies. Our goal is to help students find
               internships based on their skills and interests while helping
@@ -26,12 +26,12 @@ export default function AboutPage() {
           {/* Cards Section */}
           <div className="cards">
 
-            <div className="card">
+            <div className="card text-white">
               <img
                 src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
                 className="icon"
               />
-              <h3>Our Mission</h3>
+              <h3 className="text-white">Our Mission</h3>
               <p>
                 To simplify the internship search process by providing
                 skill-based matching and personalized recommendations.
@@ -43,7 +43,7 @@ export default function AboutPage() {
                 src="https://cdn-icons-png.flaticon.com/512/1055/1055687.png"
                 className="icon"
               />
-              <h3>Our Vision</h3>
+              <h3 className="text-white">Our Vision</h3>
               <p>
                 To become a leading platform that connects students and
                 recruiters efficiently using smart technology.
@@ -55,7 +55,7 @@ export default function AboutPage() {
                 src="https://cdn-icons-png.flaticon.com/512/4149/4149671.png"
                 className="icon"
               />
-              <h3>What We Do</h3>
+              <h3 className="text-white">What We Do</h3>
               <p>
                 We analyze student skills, match them with company requirements,
                 and provide a seamless application experience.
@@ -69,7 +69,7 @@ export default function AboutPage() {
       <style jsx>{`
         .aboutSection {
           padding: 80px 20px;
-          background: linear-gradient(to right, #f9fafc, #eef3ff);
+         
         }
 
         .container {
@@ -112,15 +112,22 @@ export default function AboutPage() {
           display: grid;
           grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
           gap: 25px;
+          
         }
 
-        .card {
-          background: white;
-          padding: 30px;
-          border-radius: 12px;
-          box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
-          transition: 0.3s ease;
-        }
+      .card {
+  background: rgba(255, 255, 255, 0.1);  
+  backdrop-filter: blur(25px);           
+  -webkit-backdrop-filter: blur(10px);  
+  
+  padding: 30px;
+  border-radius: 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.2); 
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+
+  transition: 0.3s ease;
+}
 
         .card:hover {
           transform: translateY(-10px);

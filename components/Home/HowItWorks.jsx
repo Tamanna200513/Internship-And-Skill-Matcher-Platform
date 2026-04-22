@@ -34,7 +34,6 @@ export default function HowItWorks() {
               <h3>4. Apply in One Click</h3>
               <p>Submit instantly and track your applications</p>
             </div>
-
             <div className="how-card">
               <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="job" />
               <h3>5. Get Hired</h3>
