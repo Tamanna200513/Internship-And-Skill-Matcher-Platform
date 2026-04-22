@@ -32,7 +32,7 @@ export default function AboutPage() {
                 className="icon"
               />
               <h3 className="text-white">Our Mission</h3>
-              <p>
+              <p className="text-white">
                 To simplify the internship search process by providing
                 skill-based matching and personalized recommendations.
               </p>
@@ -44,7 +44,7 @@ export default function AboutPage() {
                 className="icon"
               />
               <h3 className="text-white">Our Vision</h3>
-              <p>
+              <p className="text-white">
                 To become a leading platform that connects students and
                 recruiters efficiently using smart technology.
               </p>
@@ -56,7 +56,7 @@ export default function AboutPage() {
                 className="icon"
               />
               <h3 className="text-white">What We Do</h3>
-              <p>
+              <p className="text-white">
                 We analyze student skills, match them with company requirements,
                 and provide a seamless application experience.
               </p>
@@ -123,7 +123,7 @@ export default function AboutPage() {
   padding: 30px;
   border-radius: 12px;
 
-  border: 1px solid rgba(255, 255, 255, 0.2); 
+  border: 1px solid rgba(255, 255, 255, 0.2);  
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
 
   transition: 0.3s ease;
