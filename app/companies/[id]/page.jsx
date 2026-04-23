@@ -30,8 +30,8 @@ export default function CompanyDetailsPage() {
   // LOADING
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-100">
-        <p className="text-xl font-semibold animate-pulse">
+      <div className="min-h-screen flex items-center justify-center ">
+        <p className="text-xl font-semibold animate-pulse text-white">
           🚀 Loading company details...
         </p>
       </div>
@@ -42,7 +42,7 @@ export default function CompanyDetailsPage() {
   if (!company) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center">
-        <h2 className="text-3xl font-bold text-red-600 mb-4">
+        <h2 className="text-3xl font-bold text-red-600 mb-4 text-white">
           Company not found
         </h2>
         <Link href="/companies" className="bg-black text-white px-6 py-3 rounded-xl">
@@ -54,18 +54,18 @@ export default function CompanyDetailsPage() {
 
   // ✅ MAIN UI
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-white to-slate-200 px-4 md:px-10 py-10">
+    <div className="min-h-screen from-slate-100 to-slate-200 px-4 md:px-10 py-10">
 
       {/* HERO */}
-      <div className="max-w-7xl mx-auto bg-white rounded-3xl shadow-lg border border-slate-200 p-8 md:p-10 mt-5">
+      <div className="max-w-7xl mx-auto bg-white/10 backdrop-blur-md rounded-3xl shadow-lg border border-white/20 p-8 md:p-10 mt-5">
         <div className="flex flex-col md:flex-row gap-8 items-center">
 
           {/* Logo */}
-          <div className="w-28 h-28 flex items-center justify-center bg-slate-50 rounded-2xl border shadow">
+          <div className="w-28 h-28 flex items-center justify-center rounded-2xl border shadow">
             {company.logo ? (
               <img src={company.logo} className="max-h-20 object-contain" />
             ) : (
-              <div className="text-4xl font-bold text-blue-600">
+              <div className="text-4xl font-bold text-white">
                 {company.name?.charAt(0)}
               </div>
             )}
@@ -73,22 +73,22 @@ export default function CompanyDetailsPage() {
 
           {/* Info */}
           <div className="flex-1 text-center md:text-left">
-            <h1 className="text-4xl font-extrabold text-slate-900">
+            <h1 className="text-4xl font-extrabold text-slate-900 text-white">
               {company.name}
             </h1>
 
-            <p className="text-slate-600 mt-3 text-lg max-w-3xl">
+            <p className="text-slate-600 mt-3 text-lg max-w-3xl text-white">
               {company.description}
             </p>
 
             <div className="flex flex-wrap gap-3 mt-6 justify-center md:justify-start">
-              <span className="px-4 py-2 bg-blue-100 text-blue-700 rounded-full text-sm">
+              <span className="px-4 py-2  text-blue-700 rounded-full text-sm text-white">
                 📍 {company.location}
               </span>
-              <span className="px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm">
+              <span className="px-4 py-2 text-green-700 rounded-full text-sm text-white">
                 💼 {company.category}
               </span>
-              <span className="px-4 py-2 bg-purple-100 text-purple-700 rounded-full text-sm">
+              <span className="px-4 py-2 text-purple-700 rounded-full text-sm text-white">
                 🏢 {company.companyType}
               </span>
             </div>
@@ -100,7 +100,7 @@ export default function CompanyDetailsPage() {
               <a
                 href={company.careersLink}
                 target="_blank"
-                className="bg-blue-600 hover:bg-blue-700 text-white px-2 py-1 rounded-xl text-center font-semibold"
+                className="hover:bg-blue-700 text-white px-2 py-1 rounded-xl text-center font-semibold !no-underline text-sm"
               >
                 🚀 Apply Now
               </a>
@@ -108,7 +108,7 @@ export default function CompanyDetailsPage() {
 
             <Link
               href="/companies"
-              className="bg-slate-200 px-6 py-3 rounded-xl text-center font-semibold"
+              className="hover:bg-blue-700 text-white px-2 py-1 rounded-xl text-center font-semibold !no-underline text-sm"
             >
               Back
             </Link>
@@ -122,10 +122,10 @@ export default function CompanyDetailsPage() {
         <div className="lg:col-span-2 space-y-8">
 <div style={{ marginTop: "80px" }}></div> {/* 👈 gap */}
           {/* Eligibility */}
-          <div className="bg-white rounded-3xl shadow-md p-8 border">
-            <h2 className="text-2xl font-bold mb-6">🎯 Eligibility Criteria</h2>
+          <div className="bg-white/10 backdrop-blur-md rounded-3xl shadow-md p-8 border border-white/20">
+            <h2 className="text-2xl font-bold mb-6 text-white">🎯 Eligibility Criteria</h2>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-6 text-white">
               {[
                 ["Qualification", company.eligibility?.qualification],
                 ["Batch", company.eligibility?.batch],
@@ -133,8 +133,8 @@ export default function CompanyDetailsPage() {
                 ["Backlogs", company.eligibility?.backlogCriteria],
               ].map(([label, value], i) => (
                 <div key={i}>
-                  <p className="text-sm text-slate-500">{label}</p>
-                  <p className="font-semibold text-lg">
+                  <p className="text-sm text-white">{label}</p>
+                  <p className="font-semibold text-lg text-white">
                     {value || "N/A"}
                   </p>
                 </div>
@@ -143,12 +143,12 @@ export default function CompanyDetailsPage() {
           </div>
 <div style={{ marginTop: "80px" }}></div> {/* 👈 gap */}
           {/* Roles */}
-          <div className="bg-white rounded-3xl shadow-md p-8 border">
-            <h2 className="text-2xl font-bold mb-6">💼 Roles Offered</h2>
+          <div className="bg-white/10 backdrop-blur-md rounded-3xl shadow-md p-8 border border-white/20">
+            <h2 className="text-2xl font-bold mb-6 text-white">💼 Roles Offered</h2>
 
             <div className="flex flex-wrap gap-3">
               {company.rolesOffered?.map((role, i) => (
-                <span key={i} className="px-4 py-2 bg-slate-100 rounded-full">
+                <span key={i} className="px-4 py-2 rounded-full text-white">
                   {role}
                 </span>
               ))}
@@ -156,23 +156,23 @@ export default function CompanyDetailsPage() {
           </div>
 <div style={{ marginTop: "80px" }}></div> {/* 👈 gap */}
           {/* Selection Process */}
-          <div className="bg-white rounded-3xl shadow-md p-8 border">
-            <h2 className="text-2xl font-bold mb-8">🚀 Selection Process</h2>
+          <div className="bg-white/10 backdrop-blur-md rounded-3xl shadow-md p-8 border border-white/20">
+            <h2 className="text-2xl font-bold mb-8 text-white">🚀 Selection Process</h2>
 
-            <div className="border-l-2 border-blue-500 pl-6 space-y-8">
+            <div className="border-l-2 pl-6 space-y-8">
               {company.rounds?.map((round, i) => (
                 <div key={i} className="relative">
 
-                  <div className="absolute -left-[34px] top-1 w-5 h-5 bg-blue-600 rounded-full border-4 border-white"></div>
+                  <div className="absolute -left-[34px] top-1 w-5 h-5 rounded-full border-4 border-white"></div>
 
-                  <div className="bg-slate-50 rounded-xl p-5">
-                    <p className="text-sm text-blue-600 font-semibold">
+                  <div className="rounded-xl p-5">
+                    <p className="text-sm text-white font-semibold">
                       Round {i + 1}
                     </p>
-                    <h3 className="text-lg font-bold mt-1">
+                    <h3 className="text-lg text-white font-bold mt-1">
                       {round.title}
                     </h3>
-                    <p className="text-slate-600 mt-2">
+                    <p className="text-white mt-2">
                       {round.description}
                     </p>
                   </div>
@@ -182,12 +182,12 @@ export default function CompanyDetailsPage() {
           </div>
 <div style={{ marginTop: "80px" }}></div> {/* 👈 gap */}
           {/* Benefits */}
-          <div className="bg-white rounded-3xl shadow-md p-8 border">
-            <h2 className="text-2xl font-bold mb-6">🌟 Benefits</h2>
+          <div className="bg-white/10 backdrop-blur-md rounded-3xl shadow-md p-8 border border-white/20">
+            <h2 className="text-2xl font-bold mb-6 text-white">🌟 Benefits</h2>
 
             <div className="space-y-3">
               {company.benefits?.map((b, i) => (
-                <div key={i} className="bg-slate-50 border rounded-xl px-4 py-3">
+                <div key={i} className="text-white border rounded-xl px-4 py-3">
                   ✅ {b}
                 </div>
               ))}
@@ -198,19 +198,19 @@ export default function CompanyDetailsPage() {
         {/* RIGHT */}
         <div className="sticky top-6 h-fit">
 
-          <div className="bg-white rounded-3xl shadow-lg border p-6">
+          <div className="bg-white/10 backdrop-blur-md rounded-3xl shadow-lg border border-white/20 p-6 mt-5">
 
-            <h2 className="text-xl font-bold mb-5">🛠 Required Skills</h2>
+            <h2 className="text-xl font-bold mb-5 text-white">🛠 Required Skills</h2>
 
             <div className="flex flex-wrap gap-2">
               {company.skillsRequired?.map((skill, i) => (
-                <span key={i} className="px-3 py-1 bg-blue-100 rounded-full text-sm">
+                <span key={i} className="px-3 py-1 rounded-full text-sm text-white">
                   {skill}
                 </span>
               ))}
             </div>
 
-            <div className="mt-6 border-t pt-5 space-y-2 text-sm">
+            <div className="mt-6 border-t pt-5 space-y-2 text-sm text-white">
               <p><b>Location:</b> {company.location}</p>
               <p><b>Category:</b> {company.category}</p>
               <p><b>Type:</b> {company.companyType}</p>
@@ -220,14 +220,14 @@ export default function CompanyDetailsPage() {
               <a
                 href={company.careersLink}
                 target="_blank"
-                className="block w-full text-center bg-green-600 text-white py-3 rounded-xl"
+                className="block w-full text-center hover:bg-blue-700 text-white py-3 rounded-xl font-semibold !no-underline text-sm"
               >
                 Apply Now
               </a>
 
               <Link
                 href="/companies"
-                className="block w-full text-center bg-slate-900 text-white py-3 rounded-xl"
+                className="block w-full text-center hover:bg-slate-700 text-white py-3 rounded-xl font-semibold !no-underline text-sm"
               >
                 ← Back
               </Link>

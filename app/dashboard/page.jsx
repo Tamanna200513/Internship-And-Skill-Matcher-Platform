@@ -1,12 +1,17 @@
 "use client";
 
 import { useState } from "react";
+import { useAuth } from "@/context/AuthContext";
+import { CircularProgressbar } from "react-circular-progressbar";
+import "react-circular-progressbar/dist/styles.css";
 
 export default function Dashboard() {
+  const { user } = useAuth();
   const [companies, setCompanies] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  // 🔥 Resume Upload Flow
+  const topScore = companies[0]?.matchScore || 0;
+
   const handleUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
@@ -14,7 +19,6 @@ export default function Dashboard() {
     setLoading(true);
 
     try {
-      // 1️⃣ Upload
       const formData = new FormData();
       formData.append("file", file);
 
@@ -24,9 +28,7 @@ export default function Dashboard() {
       });
 
       const uploadData = await uploadRes.json();
-      console.log("Upload:", uploadData);
 
-      // 2️⃣ Extract Skills
       const skillRes = await fetch("/api/extract-skills", {
         method: "POST",
         headers: {
@@ -38,9 +40,7 @@ export default function Dashboard() {
       });
 
       const skillData = await skillRes.json();
-      console.log("Skills:", skillData);
 
-      // 3️⃣ Match Internships
       const matchRes = await fetch("/api/match-internships", {
         method: "POST",
         headers: {
@@ -52,10 +52,8 @@ export default function Dashboard() {
       });
 
       const matchData = await matchRes.json();
-      console.log("Matched:", matchData);
 
       setCompanies(matchData.matched);
-
     } catch (error) {
       console.error(error);
     }
@@ -64,74 +62,101 @@ export default function Dashboard() {
   };
 
   return (
-    <div
-      className="flex min-h-screen text-white bg-cover bg-center text-center">
+    <div className="min-h-screen text-white px-6 py-8">
 
+      {/* 🔝 Header */}
+      <h1 className="text-3xl font-bold mb-8">
+        Welcome back, {user?.name || "User"} 👋
+      </h1>
 
-      {/* 🔹 Main */}
-      <div className="flex-1 p-6 text-center max-w-5xl mx-auto">
+      {/* 📊 Top Section */}
+      <div className="grid md:grid-cols-3 gap-6 mb-10">
 
-        {/* 🔝 Top */}
-        <div className="flex justify-between items-center mb-6">
-          <h1 className="text-2xl font-bold text-center">
-            Welcome back {/* You can replace this with dynamic user data */}Student!
-          </h1>
+        {/* Progress Card */}
+        <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 flex flex-col items-center">
+          <div className="w-24 h-24 mb-4">
+            <CircularProgressbar value={topScore} text={`${topScore}%`} />
+          </div>
+          <p className="text-lg">Top Match Score</p>
         </div>
 
-        {/* 📄 Upload */}
-        <div className="bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-xl mb-6 max-w-md">
-          <h2 className="mb-3 text-lg">Upload Resume</h2>
+        {/* Upload Card */}
+        <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 flex flex-col justify-center">
+          <h2 className="text-lg font-semibold mb-3">Upload Resume</h2>
 
           <input
             type="file"
             onChange={handleUpload}
-            className="bg-white/10 p-2 rounded"
+            className="bg-white/20 p-2 rounded w-full"
           />
+
+          {loading && (
+            <p className="text-purple-400 mt-2 text-sm">
+              Processing...
+            </p>
+          )}
         </div>
 
-        {/* 💼 Matched Internships */}
-        <div>
-          <h2 className="text-xl mb-4">Top Matched Internships</h2>
+        {/* Stats Card */}
+        <div className="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20">
+          <h3 className="text-lg mb-3">Stats</h3>
 
-          <div className="grid md:grid-cols-3 gap-4">
-
-            {loading && (
-              <p className="text-purple-400">Processing Resume...</p>
-            )}
-
-            {!loading && companies.length === 0 && (
-              <p className="text-gray-400">
-                Upload resume to see matched internships 🚀
-              </p>
-            )}
-
-            {companies.map((c) => (
-              <div
-                key={c._id}
-                className="bg-white/5 backdrop-blur-md border border-white/10 p-4 rounded-xl shadow-lg hover:scale-105 transition"
-              >
-                <h3 className="font-bold text-lg">{c.name}</h3>
-                <p className="text-gray-400">{c.role}</p>
-
-                <p className="text-green-400">
-                  Match: {c.matchScore}%
-                </p>
-
-                <p className="text-sm text-gray-400">
-                  {c.matchedSkills?.join(", ")}
-                </p>
-
-                <a href={c.careersLink} target="_blank">
-                  <button className="mt-2 bg-purple-600 px-3 py-1 rounded hover:bg-purple-700">
-                    Apply
-                  </button>
-                </a>
-              </div>
-            ))}
-
+          <div className="space-y-2 text-gray-200">
+            <p>📄 Uploads: 1</p>
+            <p>🎯 Matches: {companies.length}</p>
           </div>
         </div>
 
+      </div>
+
+      {/* 💼 Internships */}
+      <div>
+        <h2 className="text-2xl mb-6 font-semibold">
+          Top Matched Internships 🚀
+        </h2>
+
+        {!loading && companies.length === 0 && (
+          <p className="text-gray-300">
+            Upload resume to see matched internships
+          </p>
+        )}
+
+        <div className="grid md:grid-cols-3 gap-6">
+
+          {companies.map((c) => (
+            <div
+              key={c._id}
+              className="bg-white/10 backdrop-blur-md border border-white/20 p-5 rounded-2xl shadow-lg hover:scale-105 transition duration-300"
+            >
+              <h3 className="font-bold text-lg">{c.name}</h3>
+              <p className="text-gray-300">{c.role}</p>
+
+              {/* Match Bar */}
+              <div className="mt-3">
+                <div className="h-2 bg-white/20 rounded-full">
+                  <div
+                    className="h-2 bg-purple-500 rounded-full"
+                    style={{ width: `${c.matchScore}%` }}
+                  ></div>
+                </div>
+                <p className="text-sm mt-1 text-purple-300">
+                  {c.matchScore}% Match
+                </p>
+              </div>
+
+              <p className="text-sm text-gray-300 mt-3">
+                {c.matchedSkills?.join(", ")}
+              </p>
+
+              <a href={c.careersLink} target="_blank">
+                <button className="mt-4 w-full bg-purple-600 py-2 rounded-lg hover:bg-purple-700 transition">
+                  Apply Now
+                </button>
+              </a>
+            </div>
+          ))}
+
+        </div>
       </div>
 
     </div>
