@@ -2,10 +2,10 @@
 export default function AboutPage() {
   return (
     <>
-      <section className="aboutSection">
-        <div className="container">
+      <section className="aboutSection ">
+        <div className="container ">
 
-          <h1 className="title">About Us</h1>
+          <h1 className="title">About Us  </h1>
 
           {/* Top Section */}
           <div className="aboutTop">
@@ -15,7 +15,7 @@ export default function AboutPage() {
               className="aboutImage"
             />
 
-            <p className="description">
+            <p className="description  text-white">
               Internship and Skill Matcher Platform is designed to bridge the gap
               between students and companies. Our goal is to help students find
               internships based on their skills and interests while helping
@@ -52,7 +52,7 @@ export default function AboutPage() {
 
             <div className="card">
               <img
-                src="https://cdn-icons-png.flaticon.com/512/4149/4149671.png"
+                src="https://cdn-icons-png.flaticon.com/512/1995/1995539.png"
                 className="icon"
               />
               <h3 className="text-white">What We Do</h3>
@@ -81,7 +81,7 @@ export default function AboutPage() {
           font-size: 38px;
           font-weight: bold;
           margin-bottom: 40px;
-          color: #4452d3;
+          color: #ffffff;
         }
 
         .aboutTop {
