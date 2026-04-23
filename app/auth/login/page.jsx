@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
+import { useAuth } from "@/context/AuthContext";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -10,6 +11,7 @@ export default function LoginForm() {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const { login } = useAuth();
 
   const handleLogin = async (e) => {
     e.preventDefault();
@@ -27,7 +29,10 @@ export default function LoginForm() {
 
       if (res.ok) {
         localStorage.setItem("token", data.token);
-        console.log("Login success");
+           login({
+        name: data.user.name,
+        email: data.user.email,
+      });
         router.push("/dashboard");
       } else {
         setError(data.message || "Login failed");
