@@ -42,21 +42,13 @@ export default function LoginForm() {
   };
   return (
     <div className="relative min-h-screen overflow-hidden flex items-center justify-center">
-      {/* 🎬 Video Background (Reel Style) */}
-      <video
-        autoPlay
-        loop
-        muted
-        className="absolute w-full h-full object-cover"
-      >
-        <source
-          src="https://www.w3schools.com/howto/rain.mp4"
-          type="video/mp4"
-        />
-      </video>
-
-      {/* Dark Overlay */}
-      <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
+      <div className="absolute inset-0">
+  <img
+    src="https://images.unsplash.com/photo-1521737711867-e3b97375f902"
+    alt="bg"
+    className="w-full h-full object-cover"
+  />
+</div>
 
       {/* Animated Floating Glow */}
       <div className="absolute w-[300px] h-[300px] bg-purple-500/30 rounded-full blur-3xl top-10 left-10 animate-pulse" />
@@ -108,7 +100,7 @@ export default function LoginForm() {
             whileTap={{ scale: 0.95 }}
             type="submit"
             disabled={loading}
-            className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white p-3 rounded-lg font-semibold shadow-lg"
+            className="w-full bg-gradient-to-r from-orange-500 to-pink-500 text-white p-3 rounded-lg font-semibold shadow-lg"
           >
             {loading ? "Logging in..." : "Login"}
           </motion.button>
