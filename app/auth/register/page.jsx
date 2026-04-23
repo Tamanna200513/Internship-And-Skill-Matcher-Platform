@@ -45,11 +45,7 @@ export default function SignupForm() {
     <div className="relative min-h-screen overflow-hidden flex items-center justify-center">
       
      <div className="absolute inset-0">
-  <img
-    src="https://images.unsplash.com/photo-1521737711867-e3b97375f902"
-    alt="bg"
-    className="w-full h-full object-cover"
-  />
+  
 </div>
 
      
@@ -68,7 +64,13 @@ export default function SignupForm() {
         <h2 className="text-3xl font-bold text-center mb-6 text-white">
           Create Account ✨
         </h2>
-
+{/* ❌ Button */}
+          <button
+            onClick={() => router.push("/auth/register")}
+            className="w-8 h-8 flex items-left justify-center rounded-full bg-white/20 hover:bg-pink-500 transition text-white"
+          >
+            ✕
+          </button>
         <form onSubmit={handleSignup} className="space-py-10">
 
           {/* Name */}
@@ -79,7 +81,7 @@ export default function SignupForm() {
               placeholder="Full Name"
               value={name}
                onChange={(e) => setName(e.target.value)}
-              className="w-full p-4 pl-12 rounded-xl bg-white/20 text-white placeholder-gray-300 outline-none focus:ring-2 focus:ring-purple-400"
+              className="w-full p-4 pl-12 rounded-xl bg-white/20 text-white placeholder-gray-300 outline-none focus:ring-2 focus:ring-purple-400 mb-2"
               required
             />
           </div>
@@ -92,7 +94,7 @@ export default function SignupForm() {
               placeholder="Email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full p-4 pl-12 rounded-xl bg-white/20 text-white placeholder-gray-300 outline-none focus:ring-2 focus:ring-purple-400"
+              className="w-full p-4 pl-12 rounded-xl bg-white/20 text-white placeholder-gray-300 outline-none focus:ring-2 focus:ring-purple-400 mb-2"
               required
             />
           </div>
@@ -105,7 +107,7 @@ export default function SignupForm() {
               placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full p-4 pl-12 pr-12 rounded-xl bg-white/20 text-white placeholder-gray-300 outline-none focus:ring-2 focus:ring-purple-400"
+              className="w-full p-4 pl-12 pr-12 rounded-xl bg-white/20 text-white placeholder-gray-300 outline-none focus:ring-2 focus:ring-purple-400 mb-2"
               required
             />
 
@@ -143,6 +145,7 @@ export default function SignupForm() {
             className="text-pink-400 cursor-pointer font-semibold"
           >
             Login
+            
           </span>
         </p>
       </motion.div>
