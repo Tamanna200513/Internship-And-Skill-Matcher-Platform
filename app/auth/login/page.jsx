@@ -25,11 +25,9 @@ export default function LoginForm() {
 
       const data = await res.json();
 
-            if (res.ok) {
+      if (res.ok) {
         localStorage.setItem("token", data.token);
-
         console.log("Login success");
-
         router.push("/dashboard");
       } else {
         setError(data.message || "Login failed");
@@ -40,17 +38,14 @@ export default function LoginForm() {
       setLoading(false);
     }
   };
+
   return (
     <div className="relative min-h-screen overflow-hidden flex items-center justify-center">
-      <div className="absolute inset-0">
-  <img
-    src="https://images.unsplash.com/photo-1521737711867-e3b97375f902"
-    alt="bg"
-    className="w-full h-full object-cover"
-  />
-</div>
+      
+      {/* Background */}
+      <div className="absolute inset-0"></div>
 
-      {/* Animated Floating Glow */}
+      {/* Animated Glow */}
       <div className="absolute w-[300px] h-[300px] bg-purple-500/30 rounded-full blur-3xl top-10 left-10 animate-pulse" />
       <div className="absolute w-[300px] h-[300px] bg-pink-500/30 rounded-full blur-3xl bottom-10 right-10 animate-pulse" />
 
@@ -61,14 +56,26 @@ export default function LoginForm() {
         transition={{ duration: 0.6 }}
         className="relative z-10 bg-white/10 backdrop-blur-xl p-8 rounded-2xl shadow-2xl w-[360px] border border-white/20"
       >
-        <motion.h2
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="text-3xl font-bold text-center mb-6 text-white"
-        >
-          Welcome Back 🚀
-        </motion.h2>
+        
+        {/* Header with Cut Button */}
+        <div className="flex items-center justify-center mb-6">
+          <motion.h2
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="text-3xl font-bold text-white"
+          >
+              Welcome Back
+          </motion.h2>
+
+          {/* ❌ Button */}
+          <button
+            onClick={() => router.push("/auth/register")}
+            className="w-8 h-8 flex items-right justify-center rounded-full bg-white/20 hover:bg-pink-500 transition text-white"
+          >
+            ✕
+          </button>
+        </div>
 
         <form onSubmit={handleLogin} className="space-y-4">
           <motion.input
@@ -112,7 +119,7 @@ export default function LoginForm() {
           transition={{ delay: 0.5 }}
           className="text-sm text-center mt-4 text-gray-200"
         >
-          Don’t have an account?{' '}
+          Don’t have an account?{" "}
           <span
             onClick={() => router.push("/auth/register")}
             className="text-pink-400 cursor-pointer font-semibold"
@@ -124,5 +131,3 @@ export default function LoginForm() {
     </div>
   );
 }
-
-
