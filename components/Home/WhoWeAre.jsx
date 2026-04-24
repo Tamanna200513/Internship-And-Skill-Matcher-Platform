@@ -3,28 +3,34 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaLinkedin } from "react-icons/fa";
+import Image from "next/image";
+import { image } from "framer-motion/client";
 
 const teamMembers = [
   {
     name: "Deepanshi Sharma",
+    image: "/images/Deepanshi.jpeg",
     role: "AI & Recommendation Engineer",
     linkedin: "https://www.linkedin.com/in/deepanshi-sharma-81465b2a6",
     bio: "Develops the core recommendation engine that matches students with internships using skills and AI-driven logic."
   },
   {
     name: "Himanshi",
+    image: "/images/Himanshi.jpeg",
     role: "Frontend & UI/UX Lead",
     linkedin: "https://www.linkedin.com/in/himanshi-70387231a",
     bio: "Designs clean and user-friendly interfaces using Next.js ensuring smooth experience."
   },
   {
     name: "Tamanna Tiwari",
+    image: "/images/Tamanna.jpeg",
     role: "Data & Skill Validation Lead",
     linkedin: "https://www.linkedin.com/in/tamanna-tiwari-017a2129b/",
     bio: "Validates skill data and internship requirements ensuring accurate matching."
   },
   {
     name: "Aarchie Verma",
+    image: "/images/Aarchie.jpeg",
     role: "Product & Experience Designer",
     linkedin: "https://www.linkedin.com/in/archie-verma-b25b82218",
     bio: "Designs intuitive user flows that make internship discovery simple."
@@ -77,8 +83,18 @@ export default function WhoWeAre() {
             >
 
               {/* Avatar */}
-              <div className="w-24 h-24 rounded-xl bg-gray-200 flex items-center justify-center text-lg font-bold mx-auto mb-5">
-                {member.name.split(" ").map(n => n[0]).join("")}
+              <div className="w-24 h-24 rounded-xl overflow-hidden bg-gray-200 flex items-center justify-center mx-auto mb-5 mt-3 mx-auto">
+                {member.image ? (
+                  <img
+                    src={member.image}
+                    alt={member.name}
+                    className="w-full h-full object-cover"
+                  />
+                ) : (
+                  <span className="text-lg font-bold text-gray-700">
+                    {member.name.split(" ").map(n => n[0]).join("")}
+                  </span>
+                )}
               </div>
 
               <h3 className="text-lg font-bold text-gray-900 text-white">

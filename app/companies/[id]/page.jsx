@@ -125,21 +125,46 @@ export default function CompanyDetailsPage() {
           <div className="bg-white/10 backdrop-blur-md rounded-3xl shadow-md p-8 border border-white/20">
             <h2 className="text-2xl font-bold mb-6 text-white">🎯 Eligibility Criteria</h2>
 
-            <div className="grid md:grid-cols-2 gap-6 text-white">
-              {[
-                ["Qualification", company.eligibility?.qualification],
-                ["Batch", company.eligibility?.batch],
-                ["Marks", company.eligibility?.marksCriteria],
-                ["Backlogs", company.eligibility?.backlogCriteria],
-              ].map(([label, value], i) => (
-                <div key={i}>
-                  <p className="text-sm text-white">{label}</p>
-                  <p className="font-semibold text-lg text-white">
-                    {value || "N/A"}
-                  </p>
-                </div>
-              ))}
-            </div>
+           <div className="grid md:grid-cols-2 gap-6 text-white">
+
+  {/* Qualification */}
+  <div>
+    <p className="text-sm">Qualification</p>
+    <p className="font-semibold text-lg">
+      {company.eligibility?.qualification?.join(", ") || "N/A"}
+    </p>
+  </div>
+
+  {/* Batch */}
+  <div>
+    <p className="text-sm">Batch</p>
+    <p className="font-semibold text-lg">
+      {company.eligibility?.batch?.join(", ") || "N/A"}
+    </p>
+  </div>
+
+  {/* Marks Criteria */}
+  <div>
+    <p className="text-sm">Marks Criteria</p>
+    <div className="font-semibold text-lg space-y-1">
+      {company.eligibility?.marksCriteria &&
+        Object.entries(company.eligibility.marksCriteria).map(([key, value]) => (
+          <p key={key}>
+            {key}: {value}
+          </p>
+        ))}
+    </div>
+  </div>
+
+  {/* Backlogs */}
+  <div>
+    <p className="text-sm">Backlogs</p>
+    <p className="font-semibold text-lg">
+      {company.eligibility?.backlogCriteria || "N/A"}
+    </p>
+  </div>
+
+</div>
           </div>
 <div style={{ marginTop: "80px" }}></div> {/* 👈 gap */}
           {/* Roles */}

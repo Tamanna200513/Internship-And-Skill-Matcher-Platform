@@ -43,12 +43,12 @@ export default function SignupForm() {
 
   return (
     <div className="relative min-h-screen overflow-hidden flex items-center justify-center">
-      
-     <div className="absolute inset-0">
-  
-</div>
 
-     
+      <div className="absolute inset-0">
+
+      </div>
+
+
 
       {/* Glow Effects */}
       <div className="absolute w-[400px] h-[300px] bg-purple-500/30 rounded-full blur-3xl top-10 left-10 animate-pulse" />
@@ -61,16 +61,25 @@ export default function SignupForm() {
         transition={{ duration: 0.5 }}
         className="relative z-10 bg-white/10 backdrop-blur-xl p-10 rounded-3xl shadow-[0_0_30px_rgba(255,255,255,0.2)] w-full max-w-md border border-white/20"
       >
-        <h2 className="text-3xl font-bold text-center mb-6 text-white">
-          Create Account ✨
-        </h2>
-{/* ❌ Button */}
+        <div className="relative mb-6">
+
+          <h2 className="text-3xl font-bold text-center text-white">
+            Create Account ✨
+          </h2>
+
           <button
-            onClick={() => router.push("/auth/register")}
-            className="w-8 h-8 flex items-left justify-center rounded-full bg-white/20 hover:bg-pink-500 transition text-white"
+            onClick={() => router.push("/")}
+            className="absolute top-2 right-2 w-8 h-8 flex items-center justify-center 
+               rounded-full bg-white/20 backdrop-blur-md 
+               border border-white/30 text-white
+               hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-500
+               hover:rotate-90 hover:scale-110
+               transition-all duration-300 shadow-lg"
           >
             ✕
           </button>
+
+        </div>
         <form onSubmit={handleSignup} className="space-py-10">
 
           {/* Name */}
@@ -80,7 +89,7 @@ export default function SignupForm() {
               type="text"
               placeholder="Full Name"
               value={name}
-               onChange={(e) => setName(e.target.value)}
+              onChange={(e) => setName(e.target.value)}
               className="w-full p-4 pl-12 rounded-xl bg-white/20 text-white placeholder-gray-300 outline-none focus:ring-2 focus:ring-purple-400 mb-2"
               required
             />
@@ -145,7 +154,7 @@ export default function SignupForm() {
             className="text-pink-400 cursor-pointer font-semibold"
           >
             Login
-            
+
           </span>
         </p>
       </motion.div>

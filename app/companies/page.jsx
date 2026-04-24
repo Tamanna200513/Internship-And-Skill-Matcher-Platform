@@ -68,7 +68,6 @@ export default function CompaniesPage() {
           <option className="text-black" value="All">All Company Types</option>
           <option className="text-black" value="Service Based">Service Based</option>
           <option className="text-black" value="Product Based">Product Based</option>
-          <option className="text-black" value="Startup">Startup</option>
         </select>
       </div>
 
