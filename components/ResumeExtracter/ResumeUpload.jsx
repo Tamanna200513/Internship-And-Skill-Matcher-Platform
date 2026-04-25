@@ -1,87 +1,37 @@
 "use client";
-
 import { useState } from "react";
 
-export default function ResumeUpload({ setSkills, setCompanies }) {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+export default function UploadResume({ onUpload }) {
+  const [fileName, setFileName] = useState("");
 
-  const handleUpload = async (e) => {
+  const handleFile = (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
-    setLoading(true);
-    setError("");
-
-    const formData = new FormData();
-    formData.append("resume", file);
-
-    try {
-      // ✅ 1. Upload resume
-      const res = await fetch("/api/upload-resume", {
-        method: "POST",
-        body: formData,
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) {
-        throw new Error(data.message || "Resume upload failed");
-      }
-
-      const extractedSkills = data.skills || [];
-
-      // ✅ 2. Set extracted skills
-      setSkills(extractedSkills);
-
-      // ✅ 3. Match companies
-      const matchRes = await fetch("/api/match-company", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json", // ⚠️ important
-        },
-        body: JSON.stringify({ skills: extractedSkills }),
-      });
-
-      const matchData = await matchRes.json();
-
-      if (!matchRes.ok) {
-        throw new Error(matchData.message || "Matching failed");
-      }
-
-      // ✅ FIX: matched use karo (not companies)
-      setCompanies(matchData.matched || []);
-
-    } catch (err) {
-      console.error(err);
-      setError(err.message || "Something went wrong");
-    }
-
-    setLoading(false);
+    setFileName(file.name);
+    onUpload && onUpload(file); // parent ko bhej diya
   };
 
   return (
-    <div className="bg-white p-5 rounded-xl shadow-md">
-      <h2 className="font-semibold text-lg mb-3">
-        Upload Resume
-      </h2>
+    <div className="bg-white text-black rounded-2xl p-6 shadow-xl">
+      <h2 className="text-xl font-semibold mb-4">Upload Resume</h2>
 
-      <input
-        type="file"
-        accept=".pdf"
-        onChange={handleUpload}
-        className="block w-full text-sm border p-2 rounded"
-      />
+      <div className="border-2 border-dashed border-blue-400 p-6 rounded-xl text-center hover:bg-blue-50 transition">
+        <p className="mb-2 text-gray-600">Drag & Drop your resume</p>
 
-      {loading && (
-        <p className="text-blue-500 mt-2">
-          Processing resume...
-        </p>
-      )}
+        <label className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer hover:bg-blue-600">
+          Choose File
+          <input
+            type="file"
+            className="hidden"
+            onChange={handleFile}
+          />
+        </label>
+      </div>
 
-      {error && (
-        <p className="text-red-500 mt-2">
-          {error}
+      {fileName && (
+        <p className="mt-4 text-green-600 text-sm">
+          ✅ {fileName} uploaded successfully
         </p>
       )}
     </div>

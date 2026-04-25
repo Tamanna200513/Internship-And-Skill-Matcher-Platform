@@ -12,8 +12,9 @@ export default function ResumeExtractorPage() {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen p-6 bg-gray-100">
-      <h1 className="text-2xl font-bold mb-6">Resume Extracter</h1>
+    <div className="min-h-screen p-6">
+      <h1 className="text-2xl font-bold mb-6 text-center text-white mt-6">Resume Extracter</h1>
+      <p className="text-center text-white mb-10 text-lg">Upload your resume to extract skills and find matching companies</p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         
