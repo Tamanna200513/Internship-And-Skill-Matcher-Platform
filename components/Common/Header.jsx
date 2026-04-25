@@ -15,9 +15,8 @@ export default function Header() {
   const navItems = user
     ? [
         { name: "Home", href: "/" },
-        { name: "Dashboard", href: "/dashboard" },
+        { name: "Resume Extracter", href: "/resume-extracter"},
         { name: "Companies", href: "/companies" }, 
-        { name: "Skill Match", href: "/skill-matching" },
         { name: "About Us", href: "/about" },
       ]
     : [

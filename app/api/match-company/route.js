@@ -1,40 +1,51 @@
-import { NextResponse } from "next/server";
-import dbConnect from "@/lib/dbConnect";
+import { dbConnect } from "@/lib/dbConnect";
 import Company from "@/models/Company";
 
 export async function POST(req) {
-  await dbConnect();
+  try {
+    console.log("DB CONNECT FUNCTION:", dbConnect);
+    await dbConnect();
 
-  const { skills } = await req.json();
+    const { skills } = await req.json();
 
-  const userSkills = skills.map(s => s.toLowerCase());
+    if (!skills || skills.length === 0) {
+      return Response.json({ matched: [] });
+    }
 
-  const companies = await Company.find();
+    // ✅ DB se companies fetch karo
+    const companies = await Company.find();
 
-  const matched = companies
-    .map(company => {
-      const required = company.skillsRequired.map(s =>
-        s.toLowerCase()
+    // ✅ Matching logic
+    const matched = companies.map((company) => {
+      const requiredSkills = company.skillsRequired || [];
+
+      const matchedSkills = requiredSkills.filter((skill) =>
+        skills.includes(skill.toLowerCase())
       );
 
-      if (required.length === 0) return null;
-
-      const matchedSkills = required.filter(skill =>
-        userSkills.includes(skill)
+      const matchScore = Math.round(
+        (matchedSkills.length / requiredSkills.length) * 100
       );
-
-      const matchScore =
-        (matchedSkills.length / required.length) * 100;
 
       return {
-        ...company._doc,
-        matchScore: Math.round(matchScore),
+        _id: company._id,
+        name: company.name,
+        role: company.role,
+        careersLink: company.careersLink,
         matchedSkills,
+        matchScore,
       };
     })
-    .filter(Boolean)
-    .filter(c => c.matchScore >= 30)
+    .filter((c) => c.matchScore > 0)
     .sort((a, b) => b.matchScore - a.matchScore);
 
-  return NextResponse.json({ matched });
+    return Response.json({ matched });
+
+  } catch (error) {
+    console.error(error);
+    return Response.json(
+      { message: "Matching failed" },
+      { status: 500 }
+    );
+  }
 }

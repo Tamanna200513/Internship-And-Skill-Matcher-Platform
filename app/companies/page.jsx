@@ -33,8 +33,9 @@ export default function CompaniesPage() {
       ?.toLowerCase()
       .includes(searchTerm.toLowerCase());
 
-    const matchesType =
-      selectedType === "All" || company.companyType === selectedType;
+   const matchesType =
+  selectedType === "All" ||
+  company.companyType?.toLowerCase().trim() === selectedType.toLowerCase().trim();
 
     return matchesSearch && matchesType;
   });
