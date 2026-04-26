@@ -16,6 +16,7 @@ export default function Header() {
     ? [
         { name: "Home", href: "/" },
         { name: "Resume Extracter", href: "/resume-extracter"},
+        { name: "Courses", href: "/course" },
         { name: "Companies", href: "/companies" }, 
         { name: "About Us", href: "/about" },
       ]

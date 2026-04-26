@@ -4,12 +4,36 @@ import { useState } from "react";
 export default function UploadResume({ onUpload }) {
   const [fileName, setFileName] = useState("");
 
-  const handleFile = (e) => {
+  const handleFileUpload = async (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
     setFileName(file.name);
-    onUpload && onUpload(file); // parent ko bhej diya
+
+    const formData = new FormData();
+    formData.append("resume", file);
+
+    try {
+      const res = await fetch("/api/upload-resume", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await res.json();
+
+      console.log("API Response:", data);
+
+if (typeof onUpload === "function") {
+  onUpload({
+    skills: data.skills || [],
+    matchedCompanies: data.matchedCompanies || [],
+  });
+} else {
+  console.warn("onUpload not passed");
+}
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -24,7 +48,7 @@ export default function UploadResume({ onUpload }) {
           <input
             type="file"
             className="hidden"
-            onChange={handleFile}
+            onChange={handleFileUpload}
           />
         </label>
       </div>

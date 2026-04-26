@@ -1,11 +1,15 @@
 export const runtime = "nodejs";
 
+import { dbConnect } from "@/lib/dbConnect";
+import Company from "@/models/Company";
+
 export async function POST(req) {
   try {
+    await dbConnect();
+
     const formData = await req.formData();
     const file = formData.get("resume");
 
-    // ❌ No file check
     if (!file) {
       return Response.json(
         { message: "No file uploaded" },
@@ -13,10 +17,7 @@ export async function POST(req) {
       );
     }
 
-    // ❌ safe logging
-    console.log("FILE:", file.name, file.type);
-
-    // ❌ allow only PDF
+    // ✅ only PDF allowed
     if (file.type !== "application/pdf") {
       return Response.json(
         { message: "Only PDF allowed" },
@@ -27,29 +28,45 @@ export async function POST(req) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    // ✅ safe import (Next.js compatible)
     const pdfParseModule = await import("pdf-parse");
     const pdfParse = pdfParseModule.default || pdfParseModule;
 
     const data = await pdfParse(buffer);
+    const text = data.text.toLowerCase();
 
-    console.log("TEXT LENGTH:", data.text?.length);
-
-    // ✅ better safe extraction
+    // ✅ SKILL EXTRACTION
     const skills =
-      data.text
-        ?.toLowerCase()
-        .match(/react|node|mongodb|javascript|html|css/g) || [];
+      text.match(
+        /react|node\.js|node|mongodb|javascript|html|css|java|python|c\+\+|sql|next\.js/g
+      ) || [];
 
-    return Response.json({ skills });
+    const uniqueSkills = [...new Set(skills)];
 
+    // ✅ FETCH COMPANIES FROM DB
+    const companies = await Company.find();
+
+    console.log("User Skills:", uniqueSkills);
+    console.log("DB Companies:", companies.length);
+
+    // ✅ MATCHING LOGIC (SMART)
+    const matchedCompanies = companies.filter((company) =>
+      company.skills.some((companySkill) =>
+        uniqueSkills.some((userSkill) =>
+          userSkill.toLowerCase().includes(companySkill.toLowerCase())
+        )
+      )
+    );
+
+    return Response.json({
+      success: true,
+      skills: uniqueSkills,
+      matchedCompanies,
+    });
   } catch (error) {
-    console.error("FULL ERROR:", error);
+    console.error("ERROR:", error);
 
     return Response.json(
-      {
-        message: error.message || "Parsing failed",
-      },
+      { message: "Something went wrong" },
       { status: 500 }
     );
   }

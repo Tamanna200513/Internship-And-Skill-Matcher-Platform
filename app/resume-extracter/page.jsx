@@ -11,6 +11,29 @@ export default function ResumeExtractorPage() {
   const [companies, setCompanies] = useState([]);
   const router = useRouter();
 
+  const handleUpload = async (file) => {
+  const formData = new FormData();
+  formData.append("file", file);
+
+  try {
+    const res = await fetch("/api/extract", {
+      method: "POST",
+      body: formData,
+    });
+
+    const data = await res.json();
+
+    console.log("API Response:", data);
+
+    // ✅ YAHI CONNECTION HAI
+    setSkills(data.skills || []);
+    setCompanies(data.companies || []);
+
+  } catch (error) {
+    console.error("Error:", error);
+  }
+};
+
   return (
     <div className="min-h-screen p-6">
       <h1 className="text-2xl font-bold mb-6 text-center text-white mt-6">Resume Extracter</h1>
