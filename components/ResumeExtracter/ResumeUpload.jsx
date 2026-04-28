@@ -11,7 +11,6 @@ export default function ResumeUpload({ setSkills, setCompanies }) {
     const file = e.target.files[0];
     if (!file) return;
 
-    // Reset states
     setError("");
     setSuccess("");
     setFileName(file.name);
@@ -28,68 +27,53 @@ export default function ResumeUpload({ setSkills, setCompanies }) {
 
       const data = await res.json();
 
-      console.log("API Response:", data);
-
       if (data.success) {
         setSkills(data.skills || []);
         setCompanies(data.matchedCompanies || []);
-        setSuccess("✅ Resume processed successfully!");
+        setSuccess("Resume processed successfully!");
         setTimeout(() => setSuccess(""), 3000);
       } else {
-        const errorMessage = data.message || "Failed to process resume";
-        setError(`❌ ${errorMessage}`);
-        console.error("Error details:", data);
+        setError(data.message || "Failed to process resume");
       }
     } catch (err) {
-      console.error("Upload error:", err);
-      setError("❌ Network error or server unavailable. Please try again.");
+      setError("Network error. Please try again.");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="bg-white text-black rounded-2xl p-6 shadow-xl">
-      <h2 className="text-xl font-semibold mb-4">📄 Upload Resume</h2>
+   <div className="bg-white/5 backdrop-blur-lg border border-white/10 hover:border-blue-400 rounded-2xl px-6 py-4 text-center transition-all duration-300 mt-5">
 
-      <div className="border-2 border-dashed border-blue-400 p-6 rounded-xl text-center hover:bg-blue-50 transition">
-        <p className="mb-2 text-gray-600">Drag & Drop your resume (PDF)</p>
+  {/* TEXT */}
+  <p className="text-white text-3xl mb-2 mt-2 font-semibold">
+    Upload your latest resume
+  </p>
 
-        <label className="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer hover:bg-blue-600 inline-block transition">
-          {loading ? "Processing..." : "Choose PDF File"}
-          <input
-            type="file"
-            accept=".pdf"
-            className="hidden"
-            onChange={handleFileUpload}
-            disabled={loading}
-          />
-        </label>
-      </div>
+  <p className="text-gray-400 text-xl mb-5">
+    AI-powered skill analysis & better matches
+  </p>
 
-      {error && (
-        <p className="mt-4 text-red-600 text-sm p-3 bg-red-100 rounded">
-          {error}
-        </p>
-      )}
+  {/* BUTTON */}
+  <label className="inline-block cursor-pointer">
+    <span className="bg-blue-600 px-6 py-2 rounded-lg text-white font-medium hover:bg-blue-700 transition">
+      {loading ? "Processing..." : "Upload Resume"}
+    </span>
 
-      {success && (
-        <p className="mt-4 text-green-600 text-sm p-3 bg-green-100 rounded">
-          {success}
-        </p>
-      )}
+    <input
+      type="file"
+      accept=".pdf"
+      className="hidden"
+      onChange={handleFileUpload}
+      disabled={loading}
+    />
+  </label>
 
-      {fileName && !loading && !error && (
-        <p className="mt-4 text-green-600 text-sm">
-          ✅ {fileName}
-        </p>
-      )}
+  {/* FILE TYPE */}
+  <p className="text-gray-400 text-sm mt-4">
+    Supported format: PDF 
+  </p>
 
-      {loading && (
-        <p className="mt-4 text-blue-600 text-sm animate-pulse">
-          ⏳ Processing your resume...
-        </p>
-      )}
-    </div>
+</div>
   );
 }

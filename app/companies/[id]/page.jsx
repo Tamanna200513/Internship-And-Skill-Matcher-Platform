@@ -74,11 +74,11 @@ export default function CompanyDetailsPage() {
     <div className="min-h-screen from-slate-100 to-slate-200 px-4 md:px-10 py-10">
 
       {/* HERO */}
-      <div className="max-w-7xl mx-auto bg-white/10 backdrop-blur-md rounded-3xl shadow-lg border border-white/20 p-8 md:p-10 mt-5">
+      <div className="max-w-7xl mx-auto bg-white/10 backdrop-blur-md rounded-3xl shadow-lg border border-white/20 p-8 md:p-10 mt-5 px-2">
         <div className="flex flex-col md:flex-row gap-8 items-center">
 
           {/* Logo */}
-          <div className="w-28 h-28 flex items-center justify-center rounded-2xl border shadow">
+          <div className="w-28 h-28 flex items-center justify-center rounded-2xl border shadow px-2">
             {company.logo ? (
               <img src={company.logo} className="max-h-20 object-contain" />
             ) : (
@@ -89,7 +89,7 @@ export default function CompanyDetailsPage() {
           </div>
 
           {/* Info */}
-          <div className="flex-1 text-center md:text-left">
+          <div className="flex-1 text-center md:text-left px-2">
             <h1 className="text-4xl font-extrabold text-slate-900 text-white">
               {company.name}
             </h1>
@@ -140,33 +140,33 @@ export default function CompanyDetailsPage() {
 <div style={{ marginTop: "80px" }}></div> {/* 👈 gap */}
           {/* Eligibility */}
           <div className="bg-white/10 backdrop-blur-md rounded-3xl shadow-md p-8 border border-white/20">
-            <h2 className="text-2xl font-bold mb-6 text-white">🎯 Eligibility Criteria</h2>
+            <h2 className="text-2xl font-bold mb-6 text-white text-center">🎯 Eligibility Criteria</h2>
 
            <div className="grid md:grid-cols-2 gap-6 text-white">
 
   {/* Qualification */}
   <div>
-    <p className="text-sm">Qualification</p>
-    <p className="font-semibold text-lg">
+    <p className="text-sm px-2">Qualification</p>
+    <p className="font-semibold text-lg px-2">
       {company.eligibility?.qualification?.join(", ") || "N/A"}
     </p>
   </div>
 
   {/* Batch */}
   <div>
-    <p className="text-sm">Batch</p>
-    <p className="font-semibold text-lg">
+    <p className="text-sm px-2">Batch</p>
+    <p className="font-semibold text-lg px-2">
       {company.eligibility?.batch?.join(", ") || "N/A"}
     </p>
   </div>
 
   {/* Marks Criteria */}
   <div>
-    <p className="text-sm">Marks Criteria</p>
+    <p className="text-sm px-2">Marks Criteria</p>
     <div className="font-semibold text-lg space-y-1">
       {company.eligibility?.marksCriteria &&
         Object.entries(company.eligibility.marksCriteria).map(([key, value]) => (
-          <p key={key}>
+          <p key={key} className="px-2">
             {key}: {value}
           </p>
         ))}
@@ -175,8 +175,8 @@ export default function CompanyDetailsPage() {
 
   {/* Backlogs */}
   <div>
-    <p className="text-sm">Backlogs</p>
-    <p className="font-semibold text-lg">
+    <p className="text-sm px-2">Backlogs</p>
+    <p className="font-semibold text-lg px-2">
       {company.eligibility?.backlogCriteria || "N/A"}
     </p>
   </div>
@@ -186,9 +186,9 @@ export default function CompanyDetailsPage() {
 <div style={{ marginTop: "80px" }}></div> {/* 👈 gap */}
           {/* Roles */}
           <div className="bg-white/10 backdrop-blur-md rounded-3xl shadow-md p-8 border border-white/20">
-            <h2 className="text-2xl font-bold mb-6 text-white">💼 Roles Offered</h2>
+            <h2 className="text-2xl font-bold mb-6 text-white text-center">💼 Roles Offered</h2>
 
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-3 text-center justify-center">
               {company.rolesOffered?.map((role, i) => (
                 <span key={i} className="px-4 py-2 rounded-full text-white">
                   {role}
@@ -199,7 +199,7 @@ export default function CompanyDetailsPage() {
 <div style={{ marginTop: "80px" }}></div> {/* 👈 gap */}
           {/* Selection Process */}
           <div className="bg-white/10 backdrop-blur-md rounded-3xl shadow-md p-8 border border-white/20">
-            <h2 className="text-2xl font-bold mb-8 text-white">🚀 Selection Process</h2>
+            <h2 className="text-2xl font-bold mb-8 text-white text-center">🚀 Selection Process</h2>
 
             <div className="border-l-2 pl-6 space-y-8">
               {company.rounds?.map((round, i) => (
@@ -225,7 +225,7 @@ export default function CompanyDetailsPage() {
 <div style={{ marginTop: "80px" }}></div> {/* 👈 gap */}
           {/* Benefits */}
           <div className="bg-white/10 backdrop-blur-md rounded-3xl shadow-md p-8 border border-white/20">
-            <h2 className="text-2xl font-bold mb-6 text-white">🌟 Benefits</h2>
+            <h2 className="text-2xl font-bold mb-6 text-white text-center">🌟 Benefits</h2>
 
             <div className="space-y-3">
               {company.benefits?.map((b, i) => (
@@ -242,7 +242,7 @@ export default function CompanyDetailsPage() {
 
           <div className="bg-white/10 backdrop-blur-md rounded-3xl shadow-lg border border-white/20 p-6 mt-5">
 
-            <h2 className="text-xl font-bold mb-5 text-white">🛠 Required Skills</h2>
+            <h2 className="text-xl font-bold mb-5 text-white text-center">🛠 Required Skills</h2>
 
             <div className="flex flex-wrap gap-2">
               {company.skillsRequired?.map((skill, i) => (
@@ -253,9 +253,9 @@ export default function CompanyDetailsPage() {
             </div>
 
             <div className="mt-6 border-t pt-5 space-y-2 text-sm text-white">
-              <p><b>Location:</b> {company.location}</p>
-              <p><b>Category:</b> {company.category}</p>
-              <p><b>Type:</b> {company.companyType}</p>
+              <p className="px-2"><b>Location:</b> {company.location}</p>
+              <p className="px-2"><b>Category:</b> {company.category}</p>
+              <p className="px-2"><b>Type:</b> {company.companyType}</p>
             </div>
 
             <div className="mt-6 space-y-3">

@@ -1,63 +1,63 @@
 export default function MatchedCompanies({ companies = [] }) {
-  const getMatchColor = (percentage) => {
-    if (percentage >= 80) return "bg-green-100 text-green-700";
-    if (percentage >= 60) return "bg-blue-100 text-blue-700";
-    if (percentage >= 40) return "bg-yellow-100 text-yellow-700";
-    return "bg-orange-100 text-orange-700";
-  };
-
-  const getMatchBgColor = (percentage) => {
-    if (percentage >= 80) return "bg-green-500";
-    if (percentage >= 60) return "bg-blue-500";
-    if (percentage >= 40) return "bg-yellow-500";
+  const getMatchColor = (p) => {
+    if (p >= 80) return "bg-green-500";
+    if (p >= 60) return "bg-blue-500";
+    if (p >= 40) return "bg-yellow-500";
     return "bg-orange-500";
   };
 
   return (
-    <div className="bg-white text-black rounded-2xl p-6 shadow-xl">
-      <h2 className="text-xl font-semibold mb-4">
+    <>
+      <h2 className="text-2xl font-bold mb-6 text-center mt-20">
         Top Matched Companies ({companies.length})
       </h2>
 
       {companies.length === 0 ? (
-        <p className="text-gray-500 text-center py-8">
+        <p className="text-center py-10 text-gray-300">
           Upload a resume to see matched companies
         </p>
       ) : (
-        <div className="space-y-3 max-h-96 overflow-y-auto">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6  backdrop-blur-lg rounded-2xl p-6 shadow-xl">
           {companies.map((company, index) => (
             <div
               key={company.id || index}
-              className="p-4 border border-gray-200 rounded-lg hover:shadow-md transition"
+              className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:shadow-2xl hover:scale-[1.02] transition-all duration-300"
             >
-              <div className="flex justify-between items-start mb-2">
-                <div className="flex-1">
-                  <h3 className="font-semibold text-lg">{company.name}</h3>
-                  <p className="text-xs text-gray-500">{company.role}</p>
-                  <p className="text-xs text-gray-400">{company.location}</p>
-                </div>
-                <span className={`${getMatchColor(company.matchPercentage)} px-3 py-1 rounded-full text-sm font-semibold whitespace-nowrap ml-2`}>
+              {/* TOP */}
+              <div className="flex justify-between items-center mb-3">
+                <h3 className="text-lg font-semibold">
+                  {company.name}
+                </h3>
+
+                <span className="bg-white/20 px-3 py-1 rounded-full text-sm font-semibold">
                   {company.matchPercentage}%
                 </span>
               </div>
 
-              {/* Match Progress Bar */}
-              <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
+              <p className="text-xs text-white">{company.role}</p>
+              <p className="text-xs text-white mb-4">{company.location}</p>
+
+              {/* PROGRESS */}
+              <div className="w-full bg-white/20 h-2 rounded-full mb-4">
                 <div
-                  className={`${getMatchBgColor(company.matchPercentage)} h-2 rounded-full transition-all`}
+                  className={`${getMatchColor(company.matchPercentage)} h-2 rounded-full transition-all`}
                   style={{ width: `${company.matchPercentage}%` }}
                 />
               </div>
 
-              {/* Matched Skills */}
-              {company.matchedSkills && company.matchedSkills.length > 0 && (
-                <div className="mb-2">
-                  <p className="text-xs font-semibold text-gray-600 mb-1">
-                    Matched Skills: {company.matchedSkills.length}/{company.companySkillsRequired.length}
+              {/* MATCHED */}
+              {company.matchedSkills?.length > 0 && (
+                <div className="mb-4">
+                  <p className="text-xs font-semibold text-gray-300 mb-1">
+                    Matched Skills
                   </p>
-                  <div className="flex flex-wrap gap-1">
+
+                  <div className="flex flex-wrap gap-2">
                     {company.matchedSkills.map((skill, idx) => (
-                      <span key={idx} className="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">
+                      <span
+                        key={idx}
+                        className="bg-green-500/20 text-green-400 px-2 py-1 rounded-full text-xs"
+                      >
                         {skill}
                       </span>
                     ))}
@@ -65,37 +65,36 @@ export default function MatchedCompanies({ companies = [] }) {
                 </div>
               )}
 
-              {/* Missing Skills */}
-              {company.companySkillsRequired && company.companySkillsRequired.length > 0 && (
-                <div className="mb-2">
-                  <p className="text-xs font-semibold text-gray-600 mb-1">
-                    Skills to Learn:
+              {/* MISSING */}
+              {company.companySkillsRequired?.length > 0 && (
+                <div className="mb-4">
+                  <p className="text-xs font-semibold text-gray-300 mb-1">
+                    Skills to Learn
                   </p>
-                  <div className="flex flex-wrap gap-1">
+
+                  <div className="flex flex-wrap gap-2">
                     {company.companySkillsRequired
                       .filter(skill => !company.matchedSkills.includes(skill))
                       .slice(0, 3)
                       .map((skill, idx) => (
-                        <span key={idx} className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
+                        <span
+                          key={idx}
+                          className="bg-gray-700/50 text-gray-300 px-2 py-1 rounded-full text-xs"
+                        >
                           {skill}
                         </span>
                       ))}
-                    {company.companySkillsRequired.filter(skill => !company.matchedSkills.includes(skill)).length > 3 && (
-                      <span className="bg-gray-100 text-gray-700 px-2 py-1 rounded text-xs">
-                        +{company.companySkillsRequired.filter(skill => !company.matchedSkills.includes(skill)).length - 3} more
-                      </span>
-                    )}
                   </div>
                 </div>
               )}
 
-              {/* Careers Link */}
+              {/* BUTTON */}
               {company.careersLink && (
                 <a
                   href={company.careersLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 text-sm hover:underline"
+                  className="block text-center mt-3 text-white hover:bg-blue-700 py-2 rounded-lg text-sm font-medium transition !no-underline"
                 >
                   View Openings →
                 </a>
@@ -104,6 +103,6 @@ export default function MatchedCompanies({ companies = [] }) {
           ))}
         </div>
       )}
-    </div>
+    </>
   );
 }

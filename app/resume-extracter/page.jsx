@@ -12,39 +12,41 @@ export default function ResumeExtractorPage() {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen p-6 bg-gradient-to-br from-gray-900 to-gray-800">
-      <h1 className="text-3xl font-bold mb-2 text-center text-white mt-6">
-        Resume Skill Extractor
-      </h1>
-      <p className="text-center text-gray-300 mb-10 text-lg">
-        Upload your resume to extract skills and find matching companies
-      </p>
+    <div className="min-h-screen from-gray-900 via-gray-800 to-gray-900 text-white px-4 py-10">
+      
+      {/* HEADER */}
+      <div className="text-center mb-12">
+        <h1 className="text-4xl font-bold mb-3">
+          Resume Skill Extractor
+        </h1>
+        <p className="text-gray-400 text-lg">
+          Upload your resume to extract skills and find matching companies
+        </p>
+      </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        
-        {/* LEFT SIDE */}
-        <div className="space-y-4">
-          <ResumeUpload setSkills={setSkills} setCompanies={setCompanies} />
-          <ExtractedSkills skills={skills} />
-        </div>
+      {/* TOP SECTION */}
+      <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 mb-12">
+        <ResumeUpload setSkills={setSkills} setCompanies={setCompanies} />
+        <ExtractedSkills skills={skills} />
+      </div>
 
-        {/* RIGHT SIDE */}
-        <div>
-          <MatchedCompanies companies={companies} />
-        </div>
+      {/* COMPANIES SECTION */}
+      <div className="max-w-6xl mx-auto mb-12 mt-5">
+        <MatchedCompanies companies={companies} />
       </div>
 
       {/* BUTTON */}
       {skills.length > 0 && (
-        <div className="mt-6 text-center">
+        <div className="text-center">
           <button
             onClick={() => router.push("/course")}
-            className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-3 rounded-lg font-semibold hover:shadow-lg transition transform hover:scale-105"
+            className=" px-8 py-3 rounded-xl font-semibold hover:shadow-xl transition transform hover:scale-105 mt-5"
           >
             📚 Recommend Learning Playlist
           </button>
         </div>
       )}
+
     </div>
   );
 }
