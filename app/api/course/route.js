@@ -6,10 +6,19 @@ export async function GET() {
     await dbConnect();
 
     const courses = await Course.find({});
-    return Response.json(courses);
+    
+    return Response.json({
+      success: true,
+      message: "Courses fetched successfully",
+      data: courses
+    });
   } catch (error) {
+    console.error("GET Courses Error:", error);
     return Response.json(
-      { message: "Error", error },
+      { 
+        success: false, 
+        message: error.message || "Failed to fetch courses" 
+      },
       { status: 500 }
     );
   }

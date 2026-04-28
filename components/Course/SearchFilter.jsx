@@ -38,7 +38,7 @@ const SearchFilter = ({ courses = [], setFilteredCourses }) => {
         </p>
       </div>
 
-      <div className="w-full flex justify-center mt-4">
+      <div className="w-full flex justify-center mt-2 px-4">
         <input
           type="text"
           placeholder="Search courses..."

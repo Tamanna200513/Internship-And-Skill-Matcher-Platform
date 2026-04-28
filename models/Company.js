@@ -31,7 +31,7 @@ const CompanySchema = new mongoose.Schema({
   skillsRequired: [
     {
       type: String,
-      trim: true,
+      default: [],
     },
   ],
 

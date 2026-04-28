@@ -9,27 +9,24 @@ export async function POST(req) {
 
     const { name, email, password } = await req.json();
 
-    await dbConnect();
-
-    // check fields
     if (!name || !email || !password) {
       return NextResponse.json(
-        { message: "All fields are required" },
+        { success: false, message: "All fields are required" },
         { status: 400 }
       );
     }
 
-    // check existing user
+    await dbConnect();
+
     const existingUser = await User.findOne({ email });
 
     if (existingUser) {
       return NextResponse.json(
-        { message: "User already exists" },
+        { success: false, message: "User already exists with this email" },
         { status: 400 }
       );
     }
 
-    // hash password
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const user = await User.create({
@@ -39,6 +36,7 @@ export async function POST(req) {
     });
 
     return NextResponse.json({
+      success: true,
       message: "User registered successfully",
       user: {
         id: user._id,
@@ -49,10 +47,13 @@ export async function POST(req) {
 
   } catch (error) {
 
-    console.error("REGISTER ERROR 👉", error);
+    console.error("REGISTER ERROR:", error);
 
     return NextResponse.json(
-      { message: "Server error" },
+      { 
+        success: false, 
+        message: error.message || "Internal server error. Please try again later." 
+      },
       { status: 500 }
     );
   }

@@ -7,6 +7,7 @@ export default function CompanyDetailsPage() {
   const { id } = useParams();
   const [company, setCompany] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     if (id) fetchCompany();
@@ -14,13 +15,28 @@ export default function CompanyDetailsPage() {
 
   const fetchCompany = async () => {
     try {
+      setError("");
       const res = await fetch(`/api/companies/${id}`);
-      if (!res.ok) throw new Error("Company not found");
+      
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.message || "Failed to fetch company");
+      }
 
       const data = await res.json();
-      setCompany(data);
+      
+      // Handle new response format
+      if (data.success && data.data) {
+        setCompany(data.data);
+      } else if (data._id) {
+        // Handle old format for backward compatibility
+        setCompany(data);
+      } else {
+        throw new Error(data.message || "Invalid response format");
+      }
     } catch (error) {
-      console.error(error);
+      console.error("Error fetching company:", error);
+      setError(error.message || "Failed to load company details");
       setCompany(null);
     } finally {
       setLoading(false);
@@ -30,7 +46,7 @@ export default function CompanyDetailsPage() {
   // LOADING
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center ">
+      <div className="min-h-screen flex items-center justify-center">
         <p className="text-xl font-semibold animate-pulse text-white">
           🚀 Loading company details...
         </p>
@@ -39,14 +55,15 @@ export default function CompanyDetailsPage() {
   }
 
   // ERROR
-  if (!company) {
+  if (error || !company) {
     return (
       <div className="min-h-screen flex flex-col items-center justify-center">
-        <h2 className="text-3xl font-bold text-red-600 mb-4 text-white">
-          Company not found
+        <h2 className="text-3xl font-bold text-red-400 mb-2 text-white">
+          ❌ {error || "Company not found"}
         </h2>
-        <Link href="/companies" className="bg-black text-white px-6 py-3 rounded-xl">
-          ← Back
+        <p className="text-gray-400 mb-6">Unable to load company details. Please try again.</p>
+        <Link href="/companies" className="bg-blue-600 text-white px-6 py-3 rounded-xl hover:bg-blue-700 transition">
+          ← Back to Companies
         </Link>
       </div>
     );

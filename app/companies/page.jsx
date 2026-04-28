@@ -6,6 +6,7 @@ import Link from "next/link";
 export default function CompaniesPage() {
   const [companies, setCompanies] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   // ✅ Filter states
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,11 +18,21 @@ export default function CompaniesPage() {
 
   const fetchCompanies = async () => {
     try {
+      setError("");
       const res = await fetch("/api/companies");
       const data = await res.json();
-      setCompanies(data);
+      
+      if (data.success && Array.isArray(data.data)) {
+        setCompanies(data.data);
+      } else if (Array.isArray(data)) {
+        // Handle old format for backward compatibility
+        setCompanies(data);
+      } else {
+        setError(data.message || "Failed to fetch companies");
+      }
     } catch (error) {
       console.error("Error fetching companies:", error);
+      setError("Network error. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -33,15 +44,15 @@ export default function CompaniesPage() {
       ?.toLowerCase()
       .includes(searchTerm.toLowerCase());
 
-   const matchesType =
-  selectedType === "All" ||
-  company.companyType?.toLowerCase().trim() === selectedType.toLowerCase().trim();
+    const matchesType =
+      selectedType === "All" ||
+      company.companyType?.toLowerCase().trim() === selectedType.toLowerCase().trim();
 
     return matchesSearch && matchesType;
   });
 
   return (
-    <div className="min-h-screen  from-slate-100  px-6 py-10">
+    <div className="min-h-screen from-slate-100 px-6 py-10">
       <h1 className="text-4xl font-bold text-center text-white mb-3 mt-4">
         🚀 Explore Top Companies
       </h1>
@@ -49,8 +60,15 @@ export default function CompaniesPage() {
         Discover companies, required skills, and hiring rounds
       </p>
 
+      {/* ✅ Error Message */}
+      {error && (
+        <div className="max-w-5xl mx-auto mb-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+          ❌ {error}
+        </div>
+      )}
+
       {/* ✅ Filter UI */}
-      <div className="max-w-5xl mx-auto mb-8 flex flex-col md:flex-row gap-4 justify-center items-center ">
+      <div className="max-w-5xl mx-auto mb-8 flex flex-col md:flex-row gap-4 justify-center items-center">
         {/* Search Input */}
         <input
           type="text"
@@ -64,7 +82,7 @@ export default function CompaniesPage() {
         <select
           value={selectedType}
           onChange={(e) => setSelectedType(e.target.value)}
-          className="w-full md:w-1/3 px-5 py-3 text-white rounded-xl bg-blue/80  border border-gray-600 shadow-lg placeholder-gray-400 backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
+          className="w-full md:w-1/3 px-5 py-3 text-white rounded-xl bg-blue/80 border border-gray-600 shadow-lg placeholder-gray-400 backdrop-blur-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition duration-300"
         >
           <option className="text-black" value="All">All Company Types</option>
           <option className="text-black" value="Service Based">Service Based</option>
@@ -75,9 +93,11 @@ export default function CompaniesPage() {
       <br />
 
       {loading ? (
-        <p className="text-center text-lg text-gray-600">Loading companies...</p>
+        <p className="text-center text-lg text-gray-400">⏳ Loading companies...</p>
+      ) : error ? (
+        <p className="text-center text-lg text-gray-400">Unable to load companies. Please try refreshing the page.</p>
       ) : filteredCompanies.length === 0 ? (
-        <p className="text-center text-gray-600">No matching companies found.</p>
+        <p className="text-center text-gray-400">No matching companies found.</p>
       ) : (
         <div className="grid gap-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
           {filteredCompanies.map((company) => (

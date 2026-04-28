@@ -11,7 +11,7 @@ export async function GET(req, context) {
 
     if (!mongoose.Types.ObjectId.isValid(id)) {
       return NextResponse.json(
-        { message: "Invalid company ID" },
+        { success: false, message: "Invalid company ID" },
         { status: 400 }
       );
     }
@@ -20,16 +20,23 @@ export async function GET(req, context) {
 
     if (!company) {
       return NextResponse.json(
-        { message: "Company not found" },
+        { success: false, message: "Company not found" },
         { status: 404 }
       );
     }
 
-    return NextResponse.json(company, { status: 200 });
+    return NextResponse.json({
+      success: true,
+      message: "Company fetched successfully",
+      data: company
+    }, { status: 200 });
   } catch (error) {
     console.error("Error fetching company:", error);
     return NextResponse.json(
-      { message: "Server error", error: error.message },
+      { 
+        success: false, 
+        message: error.message || "Failed to fetch company" 
+      },
       { status: 500 }
     );
   }

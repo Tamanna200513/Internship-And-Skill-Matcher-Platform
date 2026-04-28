@@ -33,7 +33,7 @@ export default function LoginForm() {
           name: data.user.name,
           email: data.user.email,
         });
-        router.push("/dashboard");
+        router.push("/resume-extracter");
       } else {
         setError(data.message || "Login failed");
       }

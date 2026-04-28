@@ -8,11 +8,19 @@ export async function GET() {
     await dbConnect();
 
     const companies = await Company.find({});
-    return NextResponse.json(companies);
+    
+    return NextResponse.json({
+      success: true,
+      message: "Companies fetched successfully",
+      data: companies
+    });
   } catch (error) {
-    console.error("GET Error:", error);
+    console.error("GET Companies Error:", error);
     return NextResponse.json(
-      { error: "Failed to fetch companies" },
+      { 
+        success: false, 
+        message: error.message || "Failed to fetch companies" 
+      },
       { status: 500 }
     );
   }
@@ -25,13 +33,27 @@ export async function POST(req) {
 
     const body = await req.json();
 
+    if (!body.name || !body.careersLink) {
+      return NextResponse.json(
+        { success: false, message: "Name and careers link are required" },
+        { status: 400 }
+      );
+    }
+
     const newCompany = await Company.create(body);
 
-    return NextResponse.json(newCompany, { status: 201 });
+    return NextResponse.json({
+      success: true,
+      message: "Company created successfully",
+      data: newCompany
+    }, { status: 201 });
   } catch (error) {
-    console.error("POST Error:", error);
+    console.error("POST Company Error:", error);
     return NextResponse.json(
-      { error: "Failed to create company" },
+      { 
+        success: false, 
+        message: error.message || "Failed to create company" 
+      },
       { status: 500 }
     );
   }

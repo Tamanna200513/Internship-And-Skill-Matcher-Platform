@@ -7,38 +7,35 @@ export async function POST(req) {
   try {
     const { email, password } = await req.json();
 
-    await dbConnect();
-
-    // check required fields
     if (!email || !password) {
       return NextResponse.json(
-        { message: "All fields required" },
+        { success: false, message: "Email and password are required" },
         { status: 400 }
       );
     }
 
-    // find user
+    await dbConnect();
+
     const user = await User.findOne({ email });
 
     if (!user) {
       return NextResponse.json(
-        { message: "Invalid email or password" },
+        { success: false, message: "Invalid email or password" },
         { status: 401 }
       );
     }
 
-    // compare password
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
       return NextResponse.json(
-        { message: "Invalid email or password" },
+        { success: false, message: "Invalid email or password" },
         { status: 401 }
       );
     }
 
-    // ✅ login success
     return NextResponse.json({
+      success: true,
       message: "Login successful",
       user: {
         id: user._id,
@@ -46,14 +43,17 @@ export async function POST(req) {
         email: user.email,
         role: user.role,
       },
-      token: "dummy-token", // 🔥 later JWT lagayenge
+      token: "dummy-token",
     });
 
   } catch (error) {
-    console.error("LOGIN ERROR 👉", error);
+    console.error("LOGIN ERROR:", error);
 
     return NextResponse.json(
-      { message: "Server error" },
+      { 
+        success: false, 
+        message: error.message || "Internal server error. Please try again later." 
+      },
       { status: 500 }
     );
   }
