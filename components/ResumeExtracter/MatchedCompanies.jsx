@@ -94,7 +94,7 @@ export default function MatchedCompanies({ companies = [] }) {
                   href={company.careersLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block text-center mt-3 text-white hover:bg-blue-700 py-2 rounded-lg text-sm font-medium transition !no-underline"
+                  className="block text-center mt-3 text-white hover:bg-blue-700  py-2 rounded-lg text-sm font-medium transition !no-underline"
                 >
                   View Openings →
                 </a>

@@ -40,7 +40,7 @@ export default function ResumeExtractorPage() {
         <div className="text-center">
           <button
             onClick={() => router.push("/course")}
-            className=" px-8 py-3 rounded-xl font-semibold hover:shadow-xl transition transform hover:scale-105 mt-5"
+            className=" px-8 py-3 rounded-xl font-semibold hover:shadow-xl transition transform hover:scale-105 mt-5 bg-blue-600"
           >
             📚 Recommend Learning Playlist
           </button>
